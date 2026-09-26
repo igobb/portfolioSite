@@ -90,7 +90,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 
 | #   | Ticket                                      | Status |
 | --- | ------------------------------------------- | ------ |
-| 01  | App skeleton and CI                         | ⏳     |
+| 01  | App skeleton and CI                         | ✅     |
 | 02  | Header, footer, theme and Locale switch     | ⏳     |
 | 03  | Content module (fixtures) and hero          | ⏳     |
 | 04  | Skills section                              | ⏳     |
