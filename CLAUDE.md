@@ -5,7 +5,7 @@ Personal portfolio site for the owner of `tgolab.dev`, served at `portfolio.tgol
 ## Goal
 
 A fast, scannable portfolio: who I am, my skills, and a guided walk through my projects.
-Content (profile, skills, projects) is edited in the database, with no redeploy needed.
+Content (skills, projects) is edited in the database, with no redeploy needed; the profile (name, roles, links, CV) lives in code.
 
 ## Stack (decided)
 

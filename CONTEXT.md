@@ -7,7 +7,7 @@ Personal portfolio of Tomasz Gołąb: tells a recruiter (or an AI agent reading 
 ### Content
 
 **Content**:
-Owner-editable text and data shown on the site — the Profile, Skills and Projects — stored per Locale and changeable without a deploy.
+Owner-editable text and data shown on the site — Skills and Projects — stored per Locale in the database and changeable without a deploy.
 _Avoid_: data, CMS entries
 
 **UI copy**:
@@ -21,7 +21,7 @@ _Avoid_: language setting, lang
 ### Profile
 
 **Profile**:
-The single record describing the owner: name, Roles, contact links and CV.
+The fixed facts describing the owner: name, Roles, contact links and CV. Kept in code, not in Content, because it rarely changes.
 _Avoid_: about, bio, user
 
 **Role**:

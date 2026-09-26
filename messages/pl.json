@@ -18,6 +18,12 @@
   "Logo": {
     "label": "Logo tgolab"
   },
+  "Hero": {
+    "email": "E-mail",
+    "seeProjects": "Zobacz projekty",
+    "downloadCv": "Pobierz CV",
+    "skillsLink": "Umiejętności"
+  },
   "ProjectsPage": {
     "title": "Projekty",
     "promptCommand": "ls ./projekty"
