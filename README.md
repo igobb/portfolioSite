@@ -18,17 +18,17 @@ Content (profile, Skills, Projects) lives in a database and is edited without to
 
 ## Tech stack
 
-| Area | Choice |
-|---|---|
-| Framework | Next.js (App Router), React, TypeScript |
-| Styling | Tailwind CSS with design tokens for both themes |
-| i18n | next-intl, Locale in the URL |
-| Content & storage | Supabase (Postgres + Storage) |
-| Forms | React Hook Form + Zod, Server Actions |
-| Email | Resend |
-| Testing | Vitest, Testing Library, Playwright |
-| CI/CD | GitHub Actions, Vercel (preview per PR, production on `master`) |
-| Analytics | Vercel Web Analytics (cookieless) |
+| Area              | Choice                                                          |
+| ----------------- | --------------------------------------------------------------- |
+| Framework         | Next.js (App Router), React, TypeScript                         |
+| Styling           | Tailwind CSS with design tokens for both themes                 |
+| i18n              | next-intl, Locale in the URL                                    |
+| Content & storage | Supabase (Postgres + Storage)                                   |
+| Forms             | React Hook Form + Zod, Server Actions                           |
+| Email             | Resend                                                          |
+| Testing           | Vitest, Testing Library, Playwright                             |
+| CI/CD             | GitHub Actions, Vercel (preview per PR, production on `master`) |
+| Analytics         | Vercel Web Analytics (cookieless)                               |
 
 Everything runs on free tiers.
 
@@ -66,11 +66,11 @@ This repository is run the way I work on production teams:
 
 Tests assert behaviour through public interfaces, never implementation details.
 
-| Seam | Tool | What it covers |
-|---|---|---|
-| The whole app | Playwright | Real production build with fixture Content: Locale switch, theme, "show more", Skill filter, Project pages, contact form, 404, structured data |
-| Content module | Vitest | Locale resolution, ordering, published-only, pagination, Skill filter (AND), next-Project lookup |
-| Contact submission | Vitest | Validation, honeypot and timing checks, rate limit, storing and notifying (with fakes) |
+| Seam               | Tool       | What it covers                                                                                                                                 |
+| ------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| The whole app      | Playwright | Real production build with fixture Content: Locale switch, theme, "show more", Skill filter, Project pages, contact form, 404, structured data |
+| Content module     | Vitest     | Locale resolution, ordering, published-only, pagination, Skill filter (AND), next-Project lookup                                               |
+| Contact submission | Vitest     | Validation, honeypot and timing checks, rate limit, storing and notifying (with fakes)                                                         |
 
 Supabase and Resend integrations are verified manually on each PR's preview deployment.
 
@@ -78,42 +78,53 @@ Supabase and Resend integrations are verified manually on each PR's preview depl
 
 Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihero.dev/)): grill the idea → write a spec → split it into vertical-slice tickets → implement each ticket test-first in a fresh context.
 
-| Document | Purpose |
-|---|---|
-| [`CONTEXT.md`](CONTEXT.md) | Domain glossary — the words used in code, tickets and UI |
-| [`docs/adr/`](docs/adr/) | Architecture decisions and why they were made |
-| [`.scratch/portfolio/spec.md`](.scratch/portfolio/spec.md) | Full specification with user stories |
-| [`.scratch/portfolio/issues/`](.scratch/portfolio/issues/) | Tickets, one per PR, with blocking dependencies |
-| [`CLAUDE.md`](CLAUDE.md), [`docs/agents/`](docs/agents/) | Instructions for AI coding agents working in this repo |
+| Document                                                   | Purpose                                                  |
+| ---------------------------------------------------------- | -------------------------------------------------------- |
+| [`CONTEXT.md`](CONTEXT.md)                                 | Domain glossary — the words used in code, tickets and UI |
+| [`docs/adr/`](docs/adr/)                                   | Architecture decisions and why they were made            |
+| [`.scratch/portfolio/spec.md`](.scratch/portfolio/spec.md) | Full specification with user stories                     |
+| [`.scratch/portfolio/issues/`](.scratch/portfolio/issues/) | Tickets, one per PR, with blocking dependencies          |
+| [`CLAUDE.md`](CLAUDE.md), [`docs/agents/`](docs/agents/)   | Instructions for AI coding agents working in this repo   |
 
 ### Roadmap
 
-| # | Ticket | Status |
-|---|---|---|
-| 01 | App skeleton and CI | ⏳ |
-| 02 | Header, footer, theme and Locale switch | ⏳ |
-| 03 | Content module (fixtures) and hero | ⏳ |
-| 04 | Skills section | ⏳ |
-| 05 | Projects list, ProjectCard and Skill filter | ⏳ |
-| 06 | Home Projects with "Show more" | ⏳ |
-| 07 | Project page and 404 | ⏳ |
-| 08 | Contact section and form | ⏳ |
-| 09 | Supabase Content, seed and revalidation | ⏳ |
-| 10 | Contact on production: Supabase and Resend | ⏳ |
-| 11 | English version | ⏳ |
-| 12 | Machine readability | ⏳ |
-| 13 | Production launch | ⏳ |
-| 14 | Open Graph images | ⏳ |
+| #   | Ticket                                      | Status |
+| --- | ------------------------------------------- | ------ |
+| 01  | App skeleton and CI                         | ⏳     |
+| 02  | Header, footer, theme and Locale switch     | ⏳     |
+| 03  | Content module (fixtures) and hero          | ⏳     |
+| 04  | Skills section                              | ⏳     |
+| 05  | Projects list, ProjectCard and Skill filter | ⏳     |
+| 06  | Home Projects with "Show more"              | ⏳     |
+| 07  | Project page and 404                        | ⏳     |
+| 08  | Contact section and form                    | ⏳     |
+| 09  | Supabase Content, seed and revalidation     | ⏳     |
+| 10  | Contact on production: Supabase and Resend  | ⏳     |
+| 11  | English version                             | ⏳     |
+| 12  | Machine readability                         | ⏳     |
+| 13  | Production launch                           | ⏳     |
+| 14  | Open Graph images                           | ⏳     |
 
 ## Running locally
 
-Available once ticket 01 lands. The app runs without any accounts using fixture Content:
+Requires Node.js 24 (see `.nvmrc`). The app runs without any accounts.
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000 — fixture Content
-npm run test       # Vitest
-npm run test:e2e   # Playwright against a production build
+npm run dev           # http://localhost:3000
+npm run lint          # ESLint
+npm run format:check  # Prettier
+npm run typecheck     # TypeScript
+npm run test          # Vitest
+npx playwright install chromium  # once, before the first e2e run
+npm run test:e2e      # Playwright against a production build
+```
+
+Dependencies are pinned to exact versions (`.npmrc`: `save-exact=true`) and upgraded deliberately:
+
+```bash
+npm run check-updates              # list available upgrades
+npm run check-updates:interactive  # pick upgrades, then npm install
 ```
 
 ## Contact

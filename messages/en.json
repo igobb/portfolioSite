@@ -1,0 +1,8 @@
+{
+  "Metadata": {
+    "description": "Tomasz Gołąb's portfolio: skills and projects."
+  },
+  "HomePage": {
+    "promptCommand": "whoami"
+  }
+}

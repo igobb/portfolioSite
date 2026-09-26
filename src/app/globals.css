@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens: the single source of the palette (Design canvas, "Terminal" style).
+ * Each token is `light-dark(<light>, <dark>)`. The theme follows the system unless
+ * <html data-theme="light|dark"> pins it.
+ */
+:root {
+  color-scheme: light dark;
+
+  --paper: light-dark(#efebe0, #141412);
+  --ink: light-dark(#1b1b18, #e9e4d6);
+  --muted: light-dark(#5e5a50, #a39e90);
+  --line: light-dark(#b9b3a4, #4a4740);
+  --surface: light-dark(#f6f3ea, #1b1a18);
+  --stripe: light-dark(rgb(27 27 24 / 0.1), rgb(233 228 214 / 0.1));
+  --panel: light-dark(#1b1b18, #e9e4d6);
+  --panel-ink: light-dark(#efebe0, #141412);
+  --panel-muted: light-dark(#a6a08f, #55524a);
+  --accent: #c8392f;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-stripe: var(--stripe);
+  --color-panel: var(--panel);
+  --color-panel-ink: var(--panel-ink);
+  --color-panel-muted: var(--panel-muted);
+  --color-accent: var(--accent);
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
