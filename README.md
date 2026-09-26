@@ -14,7 +14,7 @@ Personal portfolio of **Tomasz Gołąb**, Fullstack / Frontend Developer. It tel
 - **Light and dark mode** — follows the system, remembers the choice, no flash on load.
 - **Readable by machines** — server-rendered HTML, JSON-LD, `llms.txt`, sitemap with language alternates.
 
-Content (profile, Skills, Projects) lives in a database and is edited without touching code or deploying.
+Content (Skills, Projects) lives in a database and is edited without touching code or deploying.
 
 ## Tech stack
 
@@ -92,7 +92,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | --- | ------------------------------------------- | ------ |
 | 01  | App skeleton and CI                         | ✅     |
 | 02  | Header, footer, theme and Locale switch     | ✅     |
-| 03  | Content module (fixtures) and hero          | ⏳     |
+| 03  | Hero                                        | ⏳     |
 | 04  | Skills section                              | ⏳     |
 | 05  | Projects list, ProjectCard and Skill filter | ⏳     |
 | 06  | Home Projects with "Show more"              | ⏳     |

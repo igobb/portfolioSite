@@ -117,12 +117,12 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 
 ### Owner — editing Content
 
-66. As the owner, I want to add or edit a Project, Skill, Skill category or Profile field in the Supabase dashboard, so that I never need a code change for Content.
+66. As the owner, I want to add or edit a Project, Skill or Skill category in the Supabase dashboard, so that I never need a code change for Content.
 67. As the owner, I want the live site to reflect my edit within seconds without a deploy, so that updates are effortless.
 68. As the owner, I want the database to reject Content missing either Locale, so that the site never shows a half-translated Project.
 69. As the owner, I want to hide a Project without deleting it, so that I can retire outdated work reversibly.
 70. As the owner, I want to control the order of Projects, Skill categories and Skills, so that the strongest work comes first.
-71. As the owner, I want to upload Screenshots and CVs to storage and reference them from Content, so that media is managed in one place.
+71. As the owner, I want to upload Screenshots to storage and reference them from Content, so that media is managed in one place.
 72. As the owner, I want the free Supabase project kept awake automatically, so that editing always works.
 73. As the owner, I want to know which pages recruiters visit (privacy-friendly, no cookie banner), so that I can tell whether the portfolio works.
 
@@ -146,9 +146,11 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - Home sections have anchors for Skills and Contact; header links scroll to them from the home page and navigate to `/<locale>#…` from elsewhere. "About" is not in the navigation until that page exists.
 - UI copy in `messages/pl.json` and `messages/en.json` with typed keys; `pl.json` is written first, `en.json` before launch.
 
+### Profile (ADR 0003)
+- The Profile (name, Roles per Locale, email, GitHub and LinkedIn URLs) is a constant in `src/constants/profile.ts`; the CVs are `public/cv/tomasz-golab-cv-pl.pdf` and `…-en.pdf`. Changing them is a code change.
+
 ### Content module (the one data seam — ADR 0001)
 - A single content module exposes deep, Locale-aware queries and hides where data comes from:
-  - get the Profile for a Locale;
   - get Skill categories with their Skills for a Locale, each Skill flagged with whether any published Project uses it;
   - get a page of Project cards for a Locale (offset + limit, default 3) with a "has more" flag;
   - get all published Project cards for a Locale plus the list of Skills that appear on them (for the filter);
@@ -159,7 +161,6 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - Skill filtering (AND semantics) is a pure function over Project cards and selected Skill names, used by `/projects` with the selection read from the `skill` search params.
 
 ### Data model (Supabase)
-- `profile` (single row): name, Roles per Locale (ordered list), email, LinkedIn URL, GitHub URL, CV storage path per Locale.
 - `skill_categories`: name per Locale, sort order.
 - `skills`: name (same in both Locales), category, sort order.
 - `projects`: slug (unique), sort order, published flag (default true), and per Locale: title, context, summary, problem, role; per-Locale lists stored as JSON: what was built (strings), challenges (title + body), outcomes (strings), Metrics (value + label), stack groups (label + items), links (label + URL or a note such as "closed source").
@@ -225,5 +226,5 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 ## Further Notes
 
 - The "Terminal" style details (prompt lines like `~/tgolab $ ls ./projekty`, block cursor, bracketed buttons, diagonal hero split) are part of the design and should be carried over faithfully; the canvas is the source of truth for spacing and typography.
-- Contact email shown on the site: `t.golab06@gmail.com`. LinkedIn: `https://www.linkedin.com/in/igobb/`. GitHub: `https://github.com/igobb`. CV PDFs will be provided later — the link renders once a CV path is set.
+- Contact email shown on the site: `t.golab06@gmail.com`. LinkedIn: `https://www.linkedin.com/in/igobb/`. GitHub: `https://github.com/igobb`. CV PDFs (PL and EN) are provided by the owner and kept in `public/cv/`.
 - The owner will set up Supabase, Vercel, Resend and DNS accounts; agents prepare everything else and give step-by-step instructions for the manual parts.

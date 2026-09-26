@@ -18,6 +18,12 @@
   "Logo": {
     "label": "tgolab logo"
   },
+  "Hero": {
+    "email": "Email",
+    "seeProjects": "See projects",
+    "downloadCv": "Download CV",
+    "skillsLink": "Skills"
+  },
   "ProjectsPage": {
     "title": "Projects",
     "promptCommand": "ls ./projects"
