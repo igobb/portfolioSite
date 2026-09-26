@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { ThemeProvider } from 'next-themes'
 import { IBM_Plex_Mono } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import { Footer } from '@/components/Footer'
 import { routing } from '@/i18n/routing'
 import { OWNER_NAME } from '@/constants/profile'
 import '../globals.css'
@@ -31,9 +33,21 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound()
 
   return (
-    <html lang={locale} className={plexMono.variable}>
-      <body className="min-h-dvh bg-paper font-mono text-ink antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+    // next-themes sets data-theme on <html> from an inline script before hydration.
+    <html lang={locale} className={plexMono.variable} suppressHydrationWarning>
+      <body className="flex min-h-dvh flex-col bg-paper font-mono text-ink antialiased">
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextIntlClientProvider>
+            {children}
+
+            <Footer />
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

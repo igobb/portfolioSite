@@ -1,6 +1,6 @@
 # 04 — Skills section
 
-**What to build:** On the home page, a recruiter sees every Skill grouped into Skill categories in the aligned grid from the canvas, with a legend tile; Skills used in at least one published Project are links to `/projekty` filtered by that Skill.
+**What to build:** On the home page, a recruiter sees every Skill grouped into Skill categories in the aligned grid from the canvas, with a legend tile; Skills used in at least one published Project are links to `/projects` filtered by that Skill.
 
 **Blocked by:** 03 — Content module (fixtures) and hero
 

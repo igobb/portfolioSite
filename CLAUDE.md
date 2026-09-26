@@ -20,6 +20,17 @@ Content (profile, skills, projects) is edited in the database, with no redeploy 
 - Communicate with the user in Polish; code, comments and commits in English.
 - Pages are statically rendered and cached; the browser never talks to Supabase directly (home "load more" uses a Server Action).
 - File structure: colocate by page. Each page's folder under `src/app/[locale]/` holds its own components in a private `_components/` folder (the home page lives in the `(home)` route group so its components aren't mistaken for layout-wide ones). A page-only feature with its own logic (e.g. the home contact form: UI, Zod schema, Server Action, tests) gets its own private folder next to the page (`(home)/_contact/`). A component moves to `src/components/` only once more than one page uses it. Non-UI modules shared across pages live in their own folders under `src/` (`src/content/` for all data access, `src/i18n/`). Global constants used across pages live in `src/constants/`, one file per topic (e.g. `profile.ts`). No catch-all `utils/` or `services/` folders.
+- Comments only for something genuinely complex that can't be understood from the code at a glance; no comments restating what the code does.
+- In JSX, separate sibling elements with a blank line:
+
+  ```tsx
+  <nav>
+    <Link href="/">Home</Link>
+
+    <Link href="/projects">Projects</Link>
+  </nav>
+  ```
+
 - Domain vocabulary is in `CONTEXT.md`; decisions in `docs/adr/`.
 - Spec: `.scratch/portfolio/spec.md`; tickets: `.scratch/portfolio/issues/` (one ticket = one PR). When a ticket is done, mark its checkboxes, set its `Status:` to done and update the README roadmap row.
 - Design source of truth: Design canvas https://claude.ai/artifact/Nq8vAVbVCzm1fpPgNVoJ5G.

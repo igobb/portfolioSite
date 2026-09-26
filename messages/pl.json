@@ -2,7 +2,24 @@
   "Metadata": {
     "description": "Portfolio Tomasza Gołąba: umiejętności i projekty."
   },
-  "HomePage": {
-    "promptCommand": "whoami"
+  "Header": {
+    "homeLink": "tgolab – strona główna",
+    "mainNav": "Główna",
+    "skills": "Umiejętności",
+    "portfolio": "Portfolio",
+    "contact": "Kontakt",
+    "toggleTheme": "Przełącz tryb jasny / ciemny",
+    "localeSwitch": "Język",
+    "menu": "Menu"
+  },
+  "Footer": {
+    "source": "Kod tej strony na GitHubie"
+  },
+  "Logo": {
+    "label": "Logo tgolab"
+  },
+  "ProjectsPage": {
+    "title": "Projekty",
+    "promptCommand": "ls ./projekty"
   }
 }
