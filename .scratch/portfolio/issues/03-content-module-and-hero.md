@@ -4,10 +4,10 @@
 
 **Blocked by:** 02 — Header, footer, theme and Locale switch
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Profile constant (name, Roles per Locale, email, GitHub and LinkedIn URLs) used by the hero, header, footer and page metadata; CVs in `public/cv/` for both Locales
-- [ ] Hero matches the canvas on desktop (text left, logo on the diagonal panel right) and mobile (logo panel on top, content stacked)
-- [ ] Typewriter cycles the Profile's Roles for the Locale; with `prefers-reduced-motion` it shows the Roles without animation and the cursor doesn't blink
-- [ ] Email, GitHub and LinkedIn links from the Profile; "Download CV" downloads the Locale's CV
-- [ ] Playwright: hero shows the name, a Role for the Locale, working social links and the Locale's CV in both Locales
+- [x] Profile constant (name, Roles per Locale, email, GitHub and LinkedIn URLs) used by the hero, header, footer and page metadata; CVs in `public/cv/` for both Locales
+- [x] Hero matches the canvas on desktop (text left, logo on the diagonal panel right) and mobile (logo panel on top, content stacked)
+- [x] Typewriter cycles the Profile's Roles for the Locale; with `prefers-reduced-motion` it shows the Roles without animation and the cursor doesn't blink
+- [x] Email, GitHub and LinkedIn links from the Profile; "Download CV" downloads the Locale's CV
+- [x] Playwright: hero shows the name, a Role for the Locale, working social links and the Locale's CV in both Locales
