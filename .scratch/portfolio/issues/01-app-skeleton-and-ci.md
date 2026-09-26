@@ -4,7 +4,7 @@
 
 **Blocked by:** None — can start immediately.
 
-**Status:** ready-for-human (the owner connects Vercel and protects `master`)
+**Status:** done
 
 **Human in the loop:** the owner creates a Vercel account (GitHub login), imports the repository and protects `master`; steps below.
 
@@ -13,8 +13,8 @@
 - [x] ESLint + Prettier configured; `lint`, `typecheck`, `test` (Vitest), `build` and `test:e2e` (Playwright) scripts
 - [x] Vitest runs with at least one passing test; Playwright runs against the production build with a smoke test covering `/` redirect and both Locales rendering
 - [x] GitHub Actions workflow on every PR: lint, typecheck, Vitest, build, Playwright; plus a check that the PR title follows Conventional Commits
-- [ ] Vercel project connected; each PR gets a preview deployment
-- [ ] `master` protected: changes only through PRs, squash merge only, CI and PR title checks required
+- [x] Vercel project connected; each PR gets a preview deployment
+- [x] `master` protected: changes only through PRs, squash merge only, CI and PR title checks required
 - [x] README "Running locally" section updated if commands differ from what it says
 
 ## Owner setup steps
