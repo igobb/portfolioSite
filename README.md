@@ -92,7 +92,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | --- | ------------------------------------------- | ------ |
 | 01  | App skeleton and CI                         | ✅     |
 | 02  | Header, footer, theme and Locale switch     | ✅     |
-| 03  | Hero                                        | ⏳     |
+| 03  | Hero                                        | ✅     |
 | 04  | Skills section                              | ⏳     |
 | 05  | Projects list, ProjectCard and Skill filter | ⏳     |
 | 06  | Home Projects with "Show more"              | ⏳     |
