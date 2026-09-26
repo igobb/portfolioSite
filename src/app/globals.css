@@ -2,8 +2,9 @@
 
 /*
  * Design tokens: the single source of the palette (Design canvas, "Terminal" style).
- * Each token is `light-dark(<light>, <dark>)`. The theme follows the system unless
- * <html data-theme="light|dark"> pins it.
+ * Each token is `light-dark(<light>, <dark>)`, resolved by <html data-theme="light|dark">,
+ * which next-themes sets (to the system preference until the visitor picks one).
+ * Without JS there is no attribute and the tokens follow the system.
  */
 :root {
   color-scheme: light dark;
@@ -17,7 +18,8 @@
   --panel: light-dark(#1b1b18, #e9e4d6);
   --panel-ink: light-dark(#efebe0, #141412);
   --panel-muted: light-dark(#a6a08f, #55524a);
-  --accent: #c8392f;
+  --accent: light-dark(#c0352c, #c8392f);
+  --accent-text: light-dark(#c0352c, #e0564b);
 }
 
 :root[data-theme='light'] {
@@ -39,5 +41,24 @@
   --color-panel-ink: var(--panel-ink);
   --color-panel-muted: var(--panel-muted);
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@custom-variant dark {
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+      @slot;
+    }
+  }
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }

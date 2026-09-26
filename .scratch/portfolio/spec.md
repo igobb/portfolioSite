@@ -13,7 +13,7 @@ The owner (a frontend/fullstack developer) has no portfolio that quickly tells a
 A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Terminal" style (IBM Plex Mono, paper/ink palette, red accent used only on the Contact button and cursors), with light and dark modes.
 
 - The home page shows the hero (name, typewriter cycling the Roles, social links, logo), all Skills grouped into Skill categories, the first three Projects with "Show more", and a Contact section with a copyable email, CV, LinkedIn, GitHub and a contact form.
-- `/projekty` lists every Project as a Project card with a Skill filter; each Project has its own Project page with Metrics, a Screenshot carousel and a fixed structure (problem, role, what was built, challenges, outcomes, stack, links).
+- `/projects` lists every Project as a Project card with a Skill filter; each Project has its own Project page with Metrics, a Screenshot carousel and a fixed structure (problem, role, what was built, challenges, outcomes, stack, links).
 - Content lives in Supabase with both Locales per field and is edited in the Supabase dashboard; the site revalidates automatically. UI copy lives in the repo.
 - Pages are server-rendered, carry structured data and an `llms.txt`, so machines read the same facts people do.
 - The repository itself demonstrates production practice: small PRs with Conventional Commit titles, CI running lint, typecheck, unit tests, build and E2E on every PR, preview deploys and a README explaining the workflow.
@@ -47,7 +47,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 17. As a recruiter, I want all Skills grouped into Skill categories on the home page, so that I can scan the whole stack in one place.
 18. As a recruiter, I want Skill categories laid out in an aligned grid with equal-height headings, so that the list is easy to scan.
 19. As a recruiter, I want Skills used in at least one Project to be links, so that I can see where the owner actually applied them.
-20. As a recruiter, I want clicking a linked Skill to open `/projekty` filtered by that Skill, so that I get the evidence in one click.
+20. As a recruiter, I want clicking a linked Skill to open `/projects` filtered by that Skill, so that I get the evidence in one click.
 21. As a visitor, I want a short legend explaining that underlined Skills lead to Projects, so that the interaction is discoverable.
 22. As a recruiter, I want Skills without Projects shown as plain text, so that I don't hit empty results.
 
@@ -66,7 +66,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 30. As a visitor, I want the Project card to show the first Screenshot as a cover, so that I get a visual impression.
 31. As a visitor, I want the whole card to be clickable, so that it's easy to open a Project.
 
-### /projekty
+### /projects
 
 32. As a recruiter, I want to see all published Projects at once as Project cards, so that I have the complete picture.
 33. As a recruiter, I want to filter Projects by one or more Skills, so that I only see the relevant work.
@@ -141,7 +141,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - Domain `portfolio.tgolab.dev` via a CNAME to Vercel.
 
 ### Routing and Locales (ADR 0002)
-- next-intl with the Locale always in the URL. Localised pathnames: `/pl`, `/en` (home); `/pl/projekty`, `/en/projects` (list); `/pl/projekty/[slug]`, `/en/projects/[slug]` (Project page). Slugs are shared across Locales.
+- next-intl with the Locale always in the URL. Paths are English and identical in both Locales; only the prefix changes: `/pl`, `/en` (home); `/pl/projects`, `/en/projects` (list); `/pl/projects/[slug]`, `/en/projects/[slug]` (Project page). Slugs are shared across Locales.
 - `/` redirects by `Accept-Language` (fallback `pl`). The Locale switch maps the current route to its counterpart.
 - Home sections have anchors for Skills and Contact; header links scroll to them from the home page and navigate to `/<locale>#…` from elsewhere. "About" is not in the navigation until that page exists.
 - UI copy in `messages/pl.json` and `messages/en.json` with typed keys; `pl.json` is written first, `en.json` before launch.
@@ -156,7 +156,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - Two sources behind the same interface: Supabase (production and preview) and in-repo fixtures (Vitest, Playwright, local dev without credentials). The source is chosen by environment configuration.
 - The module returns domain objects already resolved to the requested Locale — callers never see `_pl` / `_en` columns.
 - Reads are cached and tagged; a revalidation endpoint secured by a shared secret is called by a Supabase database webhook on any Content change and invalidates the tag.
-- Skill filtering (AND semantics) is a pure function over Project cards and selected Skill names, used by `/projekty` with the selection read from the `skill` search params.
+- Skill filtering (AND semantics) is a pure function over Project cards and selected Skill names, used by `/projects` with the selection read from the `skill` search params.
 
 ### Data model (Supabase)
 - `profile` (single row): name, Roles per Locale (ordered list), email, LinkedIn URL, GitHub URL, CV storage path per Locale.
@@ -181,15 +181,15 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 
 ### Theme
 - Light/dark via a `data-theme` attribute; initial value from the stored choice, else `prefers-color-scheme`; applied by an inline script before paint to avoid a flash. Storage access is wrapped so the site works when storage is unavailable.
-- Design tokens (paper, ink, muted, line, surface, panel, accent `#C8392F`) defined once as CSS variables for both themes and exposed to Tailwind.
+- Design tokens (paper, ink, muted, line, surface, panel, accent — `#C0352C` light / `#C8392F` dark for fills, `#C0352C` / `#E0564B` for red text so it keeps ≥ 4.5:1) defined once as CSS variables for both themes and exposed to Tailwind.
 
 ### Components (from the canvas)
-- A shared **ProjectCard** used on the home page and `/projekty`, with fixed-height rows (context, two-line title, five-line summary, Metrics block), Skills pinned to the bottom and the "Open" label last; responsive single-column on mobile.
+- A shared **ProjectCard** used on the home page and `/projects`, with fixed-height rows (context, two-line title, five-line summary, Metrics block), Skills pinned to the bottom and the "Open" label last; responsive single-column on mobile.
 - Header (home variant over the diagonal panel; subpage variant with small logo and active link), Footer with source link, Hero with typewriter, Skills grid with legend tile, Screenshot carousel (CSS scroll-snap + buttons + dots, no library), Contact section, 404.
 - Accessibility: real buttons and links, `aria-pressed` on filter chips, `aria-label` on icon buttons, visible focus, text contrast ≥ 4.5:1 in both themes, reduced motion disables the typewriter animation and cursor blink.
 
 ### Machine readability
-- All Content server-rendered. JSON-LD: `Person` on the home page (name, Roles, links), `CreativeWork` per Project page, `ItemList` on `/projekty`.
+- All Content server-rendered. JSON-LD: `Person` on the home page (name, Roles, links), `CreativeWork` per Project page, `ItemList` on `/projects`.
 - `llms.txt` generated from the content module: who the owner is, Skills by category, and every Project with a one-line summary and URLs in both Locales.
 - `sitemap.xml` with `hreflang` alternates, `robots.txt`, per-page metadata; generated Open Graph images for home and each Project (last, non-blocking).
 

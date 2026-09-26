@@ -2,7 +2,24 @@
   "Metadata": {
     "description": "Tomasz Gołąb's portfolio: skills and projects."
   },
-  "HomePage": {
-    "promptCommand": "whoami"
+  "Header": {
+    "homeLink": "tgolab – home page",
+    "mainNav": "Main",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "toggleTheme": "Toggle light / dark mode",
+    "localeSwitch": "Language",
+    "menu": "Menu"
+  },
+  "Footer": {
+    "source": "Source of this site on GitHub"
+  },
+  "Logo": {
+    "label": "tgolab logo"
+  },
+  "ProjectsPage": {
+    "title": "Projects",
+    "promptCommand": "ls ./projects"
   }
 }

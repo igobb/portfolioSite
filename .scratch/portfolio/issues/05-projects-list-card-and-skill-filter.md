@@ -1,6 +1,6 @@
 # 05 — Projects list, ProjectCard and Skill filter
 
-**What to build:** At `/pl/projekty` and `/en/projects` a recruiter sees every published Project as a ProjectCard and can narrow the list by selecting Skills; the selection lives in the URL, shows a count, and has a no-results state with reset.
+**What to build:** At `/pl/projects` and `/en/projects` a recruiter sees every published Project as a ProjectCard and can narrow the list by selecting Skills; the selection lives in the URL, shows a count, and has a no-results state with reset.
 
 **Blocked by:** 03 — Content module (fixtures) and hero
 
