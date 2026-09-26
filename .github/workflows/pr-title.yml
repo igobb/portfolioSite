@@ -1,0 +1,29 @@
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  conventional-commits:
+    name: Conventional Commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the PR title
+        env:
+          # Passed via env, never interpolated into the script, so a title can't inject shell code.
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          types='feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert'
+          pattern="^($types)(\([a-z0-9-]+\))?!?: [^ ].*$"
+
+          if [[ "$TITLE" =~ $pattern ]]; then
+            echo "OK: $TITLE"
+          else
+            echo "::error::PR title \"$TITLE\" is not a Conventional Commit."
+            echo "Expected: <type>(<optional scope>): <description>, e.g. \"feat: add hero section\"."
+            echo "Allowed types: ${types//|/, }"
+            exit 1
+          fi

@@ -28,3 +28,9 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# tests
+coverage/
+playwright-report/
+test-results/
+blob-report/
