@@ -18,7 +18,16 @@ Content (profile, skills, projects) is edited in the database, with no redeploy 
 ## Conventions
 
 - Communicate with the user in Polish; code, comments and commits in English.
-- Pages are statically rendered and cached; never fetch content client-side.
+- Pages are statically rendered and cached; the browser never talks to Supabase directly (home "load more" uses a Server Action).
+- Domain vocabulary is in `CONTEXT.md`; decisions in `docs/adr/`.
+- Spec: `.scratch/portfolio/spec.md`; tickets: `.scratch/portfolio/issues/` (one ticket = one PR). When a ticket is done, mark its checkboxes, set its `Status:` to done and update the README roadmap row.
+- Design source of truth: Design canvas https://claude.ai/artifact/Nq8vAVbVCzm1fpPgNVoJ5G.
+
+## Git workflow
+
+- Never commit to `master`; branch as `feat/…`, `fix/…`, `chore/…`, `docs/…`, `test/…`.
+- PR titles in Conventional Commits format; squash merge only.
+- No AI attribution lines in commits or PR descriptions.
 
 ## Agent skills
 
