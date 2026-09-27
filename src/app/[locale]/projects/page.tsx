@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
-import { Header } from '@/components/header/Header'
+import { Header } from '@/components/Header/Header'
 import { OWNER_NAME } from '@/constants/profile'
 
 export async function generateMetadata(): Promise<Metadata> {

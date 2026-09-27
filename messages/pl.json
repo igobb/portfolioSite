@@ -24,6 +24,11 @@
     "downloadCv": "Pobierz CV",
     "skillsLink": "Umiejętności"
   },
+  "Skills": {
+    "title": "Umiejętności",
+    "promptCommand": "ls ./umiejetnosci",
+    "legend": "Podkreślone Skille prowadzą do projektów, w których ich użyłem."
+  },
   "ProjectsPage": {
     "title": "Projekty",
     "promptCommand": "ls ./projekty"

@@ -12,4 +12,5 @@
 - [ ] Filter chips with `aria-pressed`; selection stored in `skill` search params; count "X of N"; selected Skills highlighted on cards; "clear filter" action; no-results state with reset
 - [ ] Mobile: single-column cards, horizontally scrollable filter row
 - [ ] Vitest: list query (order, published-only, Locale) and the filter function (none, one, several, no match)
+- [ ] Playwright: extend the ticket 04 test so clicking a linked Skill on the home page shows that Skill's chip pressed
 - [ ] Playwright: selecting two Skills narrows results and updates the URL; a combination with no match shows the empty state and reset restores all
