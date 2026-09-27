@@ -18,18 +18,22 @@ export function Header(props: HeaderProps) {
   const isHome = props.variant === 'home'
   const current = props.variant === 'subpage' ? props.current : undefined
 
-  const links: { label: string; href: Href; isCurrent: boolean }[] = [
-    {
-      label: t('skills'),
-      href: { pathname: '/', hash: SECTION_ID.skills },
-      isCurrent: false,
-    },
-    {
-      label: t('portfolio'),
-      href: '/projects',
-      isCurrent: current === 'projects',
-    },
-  ]
+  const isProjectsCurrent = current === 'projects'
+
+  const skillsLink = (className?: string) =>
+    isHome ? (
+      <a href={`#${SECTION_ID.skills}`} className={className}>
+        {t('skills')}
+      </a>
+    ) : (
+      <Link
+        href={{ pathname: '/', hash: SECTION_ID.skills }}
+        className={className}
+      >
+        {t('skills')}
+      </Link>
+    )
+
   const contactHref: Href = { pathname: '/', hash: SECTION_ID.contact }
 
   return (
@@ -76,18 +80,19 @@ export function Header(props: HeaderProps) {
           aria-label={t('mainNav')}
           className={`hidden items-center gap-9 text-[15px] xl:flex ${isHome ? 'text-panel-ink' : ''}`}
         >
-          {links.map(({ label, href, isCurrent }) => (
-            <Link
-              key={label}
-              href={href}
-              aria-current={isCurrent ? 'page' : undefined}
-              className={
-                isCurrent ? 'border-b-2 border-ink pb-0.5 font-bold' : undefined
-              }
-            >
-              {label}
-            </Link>
-          ))}
+          {skillsLink()}
+
+          <Link
+            href="/projects"
+            aria-current={isProjectsCurrent ? 'page' : undefined}
+            className={
+              isProjectsCurrent
+                ? 'border-b-2 border-ink pb-0.5 font-bold'
+                : undefined
+            }
+          >
+            {t('portfolio')}
+          </Link>
 
           <Link
             href={contactHref}
@@ -106,16 +111,15 @@ export function Header(props: HeaderProps) {
             label={t('menu')}
             buttonClassName={isHome ? 'border-panel-ink' : 'border-ink'}
           >
-            {links.map(({ label, href, isCurrent }) => (
-              <Link
-                key={label}
-                href={href}
-                aria-current={isCurrent ? 'page' : undefined}
-                className={`border-b border-panel-muted py-3.5 ${isCurrent ? 'font-bold' : ''}`}
-              >
-                {label}
-              </Link>
-            ))}
+            {skillsLink('border-b border-panel-muted py-3.5')}
+
+            <Link
+              href="/projects"
+              aria-current={isProjectsCurrent ? 'page' : undefined}
+              className={`border-b border-panel-muted py-3.5 ${isProjectsCurrent ? 'font-bold' : ''}`}
+            >
+              {t('portfolio')}
+            </Link>
 
             <a
               href={`mailto:${OWNER_EMAIL}`}

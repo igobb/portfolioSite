@@ -4,13 +4,13 @@
 
 **Blocked by:** 03 — Content module (fixtures) and hero
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Content module query: all published Project cards for a Locale (ordered by sort order) plus the Skills that appear on them; fixtures contain the six approved Projects with their slugs
-- [ ] ProjectCard component as on the canvas: folder tab with slug, cover (first Screenshot or striped placeholder), context, two-line title, five-line summary, Metrics block, Skills pinned to the bottom, "Open" last; fixed-height rows so cards align; whole card is a link to the Project page URL
-- [ ] Pure Skill filter function with AND semantics over Project cards
-- [ ] Filter chips with `aria-pressed`; selection stored in `skill` search params; count "X of N"; selected Skills highlighted on cards; "clear filter" action; no-results state with reset
-- [ ] Mobile: single-column cards, horizontally scrollable filter row
-- [ ] Vitest: list query (order, published-only, Locale) and the filter function (none, one, several, no match)
-- [ ] Playwright: extend the ticket 04 test so clicking a linked Skill on the home page shows that Skill's chip pressed
-- [ ] Playwright: selecting two Skills narrows results and updates the URL; a combination with no match shows the empty state and reset restores all
+- [x] Content module query: all published Project cards for a Locale (ordered by sort order) plus the Skills that appear on them; fixtures contain the six approved Projects with their slugs
+- [x] ProjectCard component as on the canvas: folder tab with slug, cover (first Screenshot or striped placeholder), context, two-line title, five-line summary, Metrics block, Skills pinned to the bottom, "Open" last; fixed-height rows so cards align; whole card is a link to the Project page URL
+- [x] Pure Skill filter function with AND semantics over Project cards
+- [x] Filter chips with `aria-pressed`; selection stored in `skill` search params; count "X of N"; selected Skills highlighted on cards; "clear filter" action; no-results state with reset
+- [x] Mobile: single-column cards, horizontally scrollable filter row
+- [x] Vitest: list query (order, published-only, Locale) and the filter function (none, one, several, no match)
+- [x] Playwright: extend the ticket 04 test so clicking a linked Skill on the home page shows that Skill's chip pressed
+- [x] Playwright: selecting two Skills narrows results and updates the URL; a combination with no match shows the empty state and reset restores all

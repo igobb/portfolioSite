@@ -1,0 +1,63 @@
+import { useTranslations } from 'next-intl'
+
+type SkillFilterProps = {
+  skills: string[]
+  selectedSkills: string[]
+  onToggle: (skill: string) => void
+  onClear: () => void
+}
+
+export function SkillFilter({
+  skills,
+  selectedSkills,
+  onToggle,
+  onClear,
+}: SkillFilterProps) {
+  const t = useTranslations('ProjectsPage')
+
+  return (
+    <div
+      role="group"
+      aria-labelledby="skill-filter-label"
+      data-testid="skill-filter"
+      className="mt-6 flex flex-col gap-3 border-y-[1.5px] border-ink py-4 xl:mt-10 xl:gap-3.5 xl:py-6"
+    >
+      <div className="flex min-h-6 items-center justify-between px-4 text-[13px] xl:px-0 xl:text-sm">
+        <span id="skill-filter-label" className="text-muted">
+          {t('filterLabel')}
+        </span>
+
+        {selectedSkills.length > 0 && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="font-bold underline underline-offset-4"
+          >
+            {t('clearFilter')} <span aria-hidden>×</span>
+          </button>
+        )}
+      </div>
+
+      <div className="flex gap-2 overflow-x-auto px-4 whitespace-nowrap xl:flex-wrap xl:px-0">
+        {skills.map((skill) => {
+          const pressed = selectedSkills.includes(skill)
+
+          return (
+            <button
+              key={skill}
+              type="button"
+              aria-pressed={pressed}
+              onClick={() => onToggle(skill)}
+              className={`h-10 shrink-0 border-[1.5px] px-3 text-[13px] xl:h-9 ${
+                pressed ? 'border-ink bg-ink text-paper' : 'border-line'
+              }`}
+            >
+              {pressed && <span aria-hidden>✓ </span>}
+              {skill}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
