@@ -4,9 +4,9 @@ import { Logo } from '@/components/Logo'
 import { OWNER_EMAIL } from '@/constants/profile'
 import { SECTION_ID } from '@/constants/site'
 import { Link } from '@/i18n/navigation'
-import { LocaleSwitch } from './LocaleSwitch'
-import { MobileMenu } from './MobileMenu'
-import { ThemeToggle } from './ThemeToggle'
+import { LocaleSwitch } from './components/LocaleSwitch'
+import { MobileMenu } from './components/MobileMenu'
+import { ThemeToggle } from './components/ThemeToggle'
 
 type HeaderProps =
   { variant: 'home' } | { variant: 'subpage'; current?: 'projects' }

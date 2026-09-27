@@ -24,6 +24,11 @@
     "downloadCv": "Download CV",
     "skillsLink": "Skills"
   },
+  "Skills": {
+    "title": "Skills",
+    "promptCommand": "ls ./skills",
+    "legend": "Underlined Skills link to projects that use them."
+  },
   "ProjectsPage": {
     "title": "Projects",
     "promptCommand": "ls ./projects"

@@ -43,21 +43,21 @@ for (const {
       page,
     }) => {
       await page.goto(`/${locale}`)
-      const main = page.getByRole('main')
+      const hero = page.getByTestId('hero')
 
-      await expect(main.getByRole('link', { name: email })).toHaveAttribute(
+      await expect(hero.getByRole('link', { name: email })).toHaveAttribute(
         'href',
         'mailto:t.golab06@gmail.com',
       )
-      await expect(main.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
+      await expect(hero.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
         'href',
         'https://github.com/igobb',
       )
       await expect(
-        main.getByRole('link', { name: 'LinkedIn' }),
+        hero.getByRole('link', { name: 'LinkedIn' }),
       ).toHaveAttribute('href', 'https://www.linkedin.com/in/igobb/')
 
-      await main.getByRole('link', { name: seeProjects }).click()
+      await hero.getByRole('link', { name: seeProjects }).click()
 
       await expect(page).toHaveURL(`/${locale}/projects`)
     })

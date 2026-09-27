@@ -1,5 +1,6 @@
-import { Header } from '@/components/header/Header'
-import { Hero } from './_components/Hero'
+import { Header } from '@/components/Header/Header'
+import { Hero } from './_components/Hero/Hero'
+import { Skills } from './_components/Skills'
 
 export default function HomePage() {
   return (
@@ -8,6 +9,8 @@ export default function HomePage() {
 
       <main className="flex-1">
         <Hero />
+
+        <Skills />
       </main>
     </>
   )
