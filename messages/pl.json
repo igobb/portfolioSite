@@ -31,6 +31,16 @@
   },
   "ProjectsPage": {
     "title": "Projekty",
-    "promptCommand": "ls ./projekty"
+    "promptCommand": "ls ./projekty",
+    "homeLink": "Strona główna",
+    "count": "{total, plural, one {# projekt} few {# projekty} many {# projektów} other {# projektu}}",
+    "filteredCount": "{shown} z {total, plural, one {# projektu} other {# projektów}}",
+    "filterLabel": "Filtruj po Skillach",
+    "clearFilter": "wyczyść filtr",
+    "noResults": "Brak projektów, które mają wszystkie wybrane Skille.",
+    "noResultsHint": "Odznacz któryś Skill albo wyczyść filtr."
+  },
+  "ProjectCard": {
+    "open": "Otwórz"
   }
 }

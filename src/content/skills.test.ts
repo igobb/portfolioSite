@@ -6,6 +6,17 @@ afterEach(() => {
   vi.unstubAllEnvs()
 })
 
+const projectText = {
+  title_pl: 'Tytuł',
+  title_en: 'Title',
+  context_pl: 'Firma',
+  context_en: 'Company',
+  summary_pl: 'Opis',
+  summary_en: 'Summary',
+  metrics_pl: [],
+  metrics_en: [],
+}
+
 const tables: ContentTables = {
   skill_categories: [
     { id: 1, name_pl: 'Testy', name_en: 'Testing', sort_order: 2 },
@@ -18,13 +29,20 @@ const tables: ContentTables = {
     { id: 4, name: 'CSS', category_id: 2, sort_order: 2 },
   ],
   projects: [
-    { id: 1, slug: 'published', sort_order: 1, published: true },
-    { id: 2, slug: 'hidden', sort_order: 2, published: false },
+    {
+      id: 1,
+      slug: 'published',
+      sort_order: 1,
+      published: true,
+      ...projectText,
+    },
+    { id: 2, slug: 'hidden', sort_order: 2, published: false, ...projectText },
   ],
   project_skills: [
     { project_id: 1, skill_id: 3 },
     { project_id: 2, skill_id: 2 },
   ],
+  project_screenshots: [],
 }
 
 describe('getSkillCategories', () => {

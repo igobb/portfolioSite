@@ -70,6 +70,39 @@ test.describe('desktop Skills section', () => {
     ).toBeInViewport()
   })
 
+  for (const { name, link } of [
+    {
+      name: 'hero',
+      link: (page: Page) =>
+        page.getByTestId('hero').getByRole('link', { name: 'Umiejętności' }),
+    },
+    {
+      name: 'header',
+      link: (page: Page) =>
+        page
+          .getByRole('navigation', { name: 'Główna' })
+          .getByRole('link', { name: 'Umiejętności' }),
+    },
+  ]) {
+    test(`the ${name} link scrolls to the section again after scrolling back up`, async ({
+      page,
+    }) => {
+      await page.goto('/pl')
+      const heading = skillsSection(page).getByRole('heading', { level: 2 })
+
+      await link(page).click()
+      await expect(heading).toBeInViewport()
+
+      await page.evaluate(() => window.scrollTo(0, 0))
+      await expect(heading).not.toBeInViewport()
+
+      await link(page).click()
+
+      await expect(page).toHaveURL('/pl#skills')
+      await expect(heading).toBeInViewport()
+    })
+  }
+
   test('the header link leads to the section from another page', async ({
     page,
   }) => {
@@ -116,6 +149,11 @@ for (const { locale, section, skill, projectsHeading } of [
     const url = new URL(page.url())
     expect(url.pathname).toBe(`/${locale}/projects`)
     expect(url.searchParams.getAll('skill')).toEqual([skill])
+    await expect(
+      page
+        .getByTestId('skill-filter')
+        .getByRole('button', { name: skill, exact: true }),
+    ).toHaveAttribute('aria-pressed', 'true')
   })
 }
 
@@ -131,6 +169,24 @@ test.describe('mobile Skills section', () => {
 
     expect(second.x).toBe(first.x)
     expect(second.y).toBeGreaterThan(first.y)
+  })
+
+  test('the menu link scrolls to the section again after scrolling back up', async ({
+    page,
+  }) => {
+    await page.goto('/pl#skills')
+    const heading = skillsSection(page).getByRole('heading', { level: 2 })
+    await page.evaluate(() => window.scrollTo(0, 0))
+    await expect(heading).not.toBeInViewport()
+
+    await page.getByRole('button', { name: 'Menu' }).click()
+    await page
+      .getByRole('navigation', { name: 'Menu' })
+      .getByRole('link', { name: 'Umiejętności' })
+      .click()
+
+    await expect(heading).toBeInViewport()
+    await expect(page.getByRole('navigation', { name: 'Menu' })).toBeHidden()
   })
 
   test('the menu link scrolls to the section', async ({ page }) => {

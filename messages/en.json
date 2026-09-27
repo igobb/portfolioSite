@@ -31,6 +31,16 @@
   },
   "ProjectsPage": {
     "title": "Projects",
-    "promptCommand": "ls ./projects"
+    "promptCommand": "ls ./projects",
+    "homeLink": "Home page",
+    "count": "{total, plural, one {# project} other {# projects}}",
+    "filteredCount": "{shown} of {total, plural, one {# project} other {# projects}}",
+    "filterLabel": "Filter by Skill",
+    "clearFilter": "clear filter",
+    "noResults": "No projects have all the selected Skills.",
+    "noResultsHint": "Deselect a Skill or clear the filter."
+  },
+  "ProjectCard": {
+    "open": "Open"
   }
 }
