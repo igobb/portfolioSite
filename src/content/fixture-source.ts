@@ -1,5 +1,5 @@
 import type { Locale } from '@/i18n/routing'
-import type { ContentSource, Metric } from './types'
+import type { ContentSource, Metric, ProjectCard } from './types'
 
 // Row shapes mirror the Supabase tables (ticket 09), so fixtures and the database stay interchangeable.
 export type SkillCategoryRow = {
@@ -83,6 +83,16 @@ export function createFixtureSource(tables: ContentTables): ContentSource {
       : null
   }
 
+  const toProjectCard = (project: ProjectRow, locale: Locale): ProjectCard => ({
+    slug: project.slug,
+    title: project[`title_${locale}`],
+    context: project[`context_${locale}`],
+    summary: project[`summary_${locale}`],
+    metrics: project[`metrics_${locale}`],
+    skills: skillNamesOf(project.id),
+    cover: coverOf(project.id, locale),
+  })
+
   return {
     async getSkillCategories(locale: Locale) {
       const skillIdsWithProjects = new Set(
@@ -104,21 +114,26 @@ export function createFixtureSource(tables: ContentTables): ContentSource {
     },
 
     async getProjectList(locale: Locale) {
-      const projects = publishedProjects.map((project) => ({
-        slug: project.slug,
-        title: project[`title_${locale}`],
-        context: project[`context_${locale}`],
-        summary: project[`summary_${locale}`],
-        metrics: project[`metrics_${locale}`],
-        skills: skillNamesOf(project.id),
-        cover: coverOf(project.id, locale),
-      }))
+      const projects = publishedProjects.map((project) =>
+        toProjectCard(project, locale),
+      )
 
       const skills = [
         ...new Set(projects.flatMap((project) => project.skills)),
       ].toSorted((a, b) => a.localeCompare(b, 'en'))
 
       return { projects, skills }
+    },
+
+    async getProjectCards(locale, { offset, limit }) {
+      const end = offset + limit
+
+      return {
+        projects: publishedProjects
+          .slice(offset, end)
+          .map((project) => toProjectCard(project, locale)),
+        hasMore: end < publishedProjects.length,
+      }
     },
   }
 }

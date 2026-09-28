@@ -29,6 +29,16 @@
     "promptCommand": "ls ./skills",
     "legend": "Underlined Skills link to projects that use them."
   },
+  "HomeProjects": {
+    "title": "Projects",
+    "promptCommand": "ls ./projects | head -3",
+    "allProjects": "All projects · filter by Skill",
+    "allProjectsShort": "All projects · filter",
+    "showMore": "Show more",
+    "loading": "Loading…",
+    "loadError": "Could not load more projects.",
+    "retry": "Try again"
+  },
   "ProjectsPage": {
     "title": "Projects",
     "promptCommand": "ls ./projects",

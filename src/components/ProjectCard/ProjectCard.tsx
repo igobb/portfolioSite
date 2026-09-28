@@ -8,11 +8,13 @@ const CARD_METRICS_LIMIT = 2
 type ProjectCardProps = {
   project: ProjectCardContent
   highlightedSkills?: string[]
+  headingLevel?: 'h2' | 'h3'
 }
 
 export function ProjectCard({
   project,
   highlightedSkills = [],
+  headingLevel: Heading = 'h2',
 }: ProjectCardProps) {
   const t = useTranslations('ProjectCard')
 
@@ -38,12 +40,12 @@ export function ProjectCard({
             {project.context}
           </p>
 
-          <h2
+          <Heading
             id={titleId}
             className="text-[21px] leading-[1.2] font-bold md:line-clamp-2 md:h-[58px] md:shrink-0 md:text-2xl md:leading-[29px]"
           >
             {project.title}
-          </h2>
+          </Heading>
 
           <p className="text-sm leading-[1.6] md:line-clamp-5 md:h-[120px] md:shrink-0 md:text-[15px] md:leading-6">
             {project.summary}
