@@ -6,11 +6,14 @@ import type { ContentSource } from './types'
 export type {
   Metric,
   ProjectCard,
+  ProjectCardSlice,
   ProjectList,
   Screenshot,
   Skill,
   SkillCategory,
 } from './types'
+
+const PROJECT_CARDS_PER_LOAD = 3
 
 function contentSource(): ContentSource {
   const name = process.env.CONTENT_SOURCE ?? 'fixtures'
@@ -26,4 +29,14 @@ export async function getSkillCategories(locale: Locale) {
 
 export async function getProjectList(locale: Locale) {
   return contentSource().getProjectList(locale)
+}
+
+export async function getProjectCards(
+  locale: Locale,
+  {
+    offset,
+    limit = PROJECT_CARDS_PER_LOAD,
+  }: { offset: number; limit?: number },
+) {
+  return contentSource().getProjectCards(locale, { offset, limit })
 }

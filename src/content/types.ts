@@ -35,7 +35,21 @@ export type ProjectList = {
   skills: string[]
 }
 
+export type ProjectCardSlice = {
+  projects: ProjectCard[]
+  hasMore: boolean
+}
+
+export type ProjectCardRange = {
+  offset: number
+  limit: number
+}
+
 export type ContentSource = {
   getSkillCategories(locale: Locale): Promise<SkillCategory[]>
   getProjectList(locale: Locale): Promise<ProjectList>
+  getProjectCards(
+    locale: Locale,
+    range: ProjectCardRange,
+  ): Promise<ProjectCardSlice>
 }

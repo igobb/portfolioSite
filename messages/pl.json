@@ -29,6 +29,16 @@
     "promptCommand": "ls ./umiejetnosci",
     "legend": "Podkreślone Skille prowadzą do projektów, w których ich użyłem."
   },
+  "HomeProjects": {
+    "title": "Projekty",
+    "promptCommand": "ls ./projekty | head -3",
+    "allProjects": "Wszystkie projekty · filtruj po Skillach",
+    "allProjectsShort": "Wszystkie projekty · filtruj",
+    "showMore": "Pokaż więcej",
+    "loading": "Wczytuję…",
+    "loadError": "Nie udało się wczytać kolejnych projektów.",
+    "retry": "Spróbuj ponownie"
+  },
   "ProjectsPage": {
     "title": "Projekty",
     "promptCommand": "ls ./projekty",
