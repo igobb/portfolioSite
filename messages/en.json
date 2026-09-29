@@ -71,5 +71,13 @@
     "links": "links",
     "projectNav": "Project navigation",
     "nextProject": "Next project"
+  },
+  "NotFound": {
+    "error": "bash: cd: no such file or directory",
+    "description": "This page isn't here. Maybe you're looking for one of these:",
+    "home": "home",
+    "projects": "projects",
+    "contact": "contact",
+    "caption": "hmm, nothing here"
   }
 }
