@@ -2,6 +2,7 @@ import { Header } from '@/components/Header/Header'
 import { Hero } from './_components/Hero/Hero'
 import { Skills } from './_components/Skills'
 import { HomeProjects } from './_components/HomeProjects/HomeProjects'
+import { Contact } from './_components/Contact/Contact'
 
 export default function HomePage() {
   return (
@@ -14,6 +15,8 @@ export default function HomePage() {
         <Skills />
 
         <HomeProjects />
+
+        <Contact />
       </main>
     </>
   )

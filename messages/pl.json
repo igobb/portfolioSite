@@ -79,5 +79,37 @@
     "projects": "projekty",
     "contact": "kontakt",
     "caption": "hmm, tu nic nie ma"
+  },
+  "Contact": {
+    "promptCommand": "contact --me",
+    "title": "Kontakt",
+    "mailFirst": "Najszybciej złapiesz mnie mailowo:",
+    "cv": "CV (PDF, PL)",
+    "formIntro": "Albo zostaw wiadomość:",
+    "name": "Imię",
+    "email": "E-mail",
+    "message": "Wiadomość",
+    "website": "Strona internetowa (zostaw puste)",
+    "send": "Wyślij wiadomość",
+    "sending": "Wysyłam…",
+    "retry": "Spróbuj ponownie",
+    "sentTitle": "Wiadomość wysłana ✓",
+    "sent": "Dzięki! Odpiszę najszybciej, jak się da.",
+    "failed": "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz na e-mail.",
+    "errors": {
+      "nameRequired": "Podaj imię.",
+      "nameTooLong": "Imię może mieć najwyżej {nameMax} znaków.",
+      "emailRequired": "Podaj adres e-mail.",
+      "emailInvalid": "To nie wygląda na poprawny adres e-mail.",
+      "messageTooShort": "Wiadomość musi mieć co najmniej {min} znaków.",
+      "messageTooLong": "Wiadomość może mieć najwyżej {max} znaków."
+    }
+  },
+  "CopyButton": {
+    "copy": "Kopiuj",
+    "copied": "Skopiowano ✓",
+    "failed": "Nie udało się skopiować",
+    "copiedAnnouncement": "Skopiowano do schowka",
+    "failedAnnouncement": "Nie udało się skopiować do schowka"
   }
 }
