@@ -45,6 +45,37 @@ export type ProjectCardRange = {
   limit: number
 }
 
+export type Challenge = {
+  title: string
+  body: string
+}
+
+export type StackGroup = {
+  label: string
+  items: string[]
+}
+
+export type ProjectLink =
+  { label: string; url: string } | { label: string; note: string }
+
+export type ProjectPage = {
+  slug: string
+  title: string
+  context: string
+  summary: string
+  metrics: Metric[]
+  skills: string[]
+  screenshots: Screenshot[]
+  problem: string
+  role: string
+  built: string[]
+  challenges: Challenge[]
+  outcomes: string[]
+  stack: StackGroup[]
+  links: ProjectLink[]
+  next: { slug: string; title: string } | null
+}
+
 export type ContentSource = {
   getSkillCategories(locale: Locale): Promise<SkillCategory[]>
   getProjectList(locale: Locale): Promise<ProjectList>
@@ -52,4 +83,5 @@ export type ContentSource = {
     locale: Locale,
     range: ProjectCardRange,
   ): Promise<ProjectCardSlice>
+  getProjectPage(locale: Locale, slug: string): Promise<ProjectPage | null>
 }

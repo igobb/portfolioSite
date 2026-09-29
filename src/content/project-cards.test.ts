@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createFixtureSource, type ContentTables } from './fixture-source'
+import { NO_PAGE_SECTIONS } from './fixtures'
 import { getProjectCards } from '.'
 
 const projectRow = (
@@ -19,6 +20,7 @@ const projectRow = (
   summary_en: `Summary ${sort_order}`,
   metrics_pl: [],
   metrics_en: [],
+  ...NO_PAGE_SECTIONS,
 })
 
 const tables: ContentTables = {

@@ -82,6 +82,24 @@ const skills: ContentTables['skills'] = Object.entries(SKILL_NAMES_BY_CATEGORY)
   )
   .map((skill, index) => ({ id: index + 1, ...skill }))
 
+// Only EventTracker has full Project page Content (from the Design canvas); the rest arrives with Supabase (ticket 09).
+export const NO_PAGE_SECTIONS = {
+  problem_pl: '',
+  problem_en: '',
+  role_pl: '',
+  role_en: '',
+  built_pl: [],
+  built_en: [],
+  challenges_pl: [],
+  challenges_en: [],
+  outcomes_pl: [],
+  outcomes_en: [],
+  stack_pl: [],
+  stack_en: [],
+  links_pl: [],
+  links_en: [],
+} satisfies Partial<ContentTables['projects'][number]>
+
 const projects: ContentTables['projects'] = [
   {
     id: 1,
@@ -104,6 +122,86 @@ const projects: ContentTables['projects'] = [
       { value: '1.2M+', label: 'sessions a day' },
       { value: '30 kB', label: 'tracking script' },
     ],
+    problem_pl:
+      'Klienci Landingi potrzebowali danych o zachowaniu użytkowników na swoich landing page’ach — bez konfigurowania narzędzi i wklejania kodu. Rozwiązaniem jest analityka wbudowana w platformę, która zbiera zdarzenia automatycznie na każdej opublikowanej stronie.',
+    problem_en:
+      'Landingi customers needed data on how visitors behave on their landing pages, without configuring tools or pasting code. The answer is analytics built into the platform that collects events automatically on every published page.',
+    role_pl:
+      'Architektura całości po stronie klienckiej oraz implementacja frontendu — dashboard analityczny i skrypt śledzący. Przepływ danych zaprojektowałem sam; poza moim zakresem było wyłącznie ich składowanie na backendzie.',
+    role_en:
+      'The whole client-side architecture and the frontend implementation: the analytics dashboard and the tracking script. I designed the data flow myself; only storing the data on the backend was outside my scope.',
+    built_pl: [],
+    built_en: [],
+    challenges_pl: [
+      {
+        title: 'Skrypt, który nie może kosztować klienta wyników',
+        body: 'Skrypt trafia na strony klientów, więc każdy kilobajt i każda milisekunda obciążają ich Core Web Vitals. Napisałem go w czystym TypeScripcie, z minimalnymi zależnościami i konfiguracją Vite nastawioną na rozmiar paczki — plik wynikowy waży 30 kB. Zdarzenia wysyła sendBeacon z throttlingiem po stronie klienta, żeby nie obciążać głównego wątku ani sieci użytkownika.',
+      },
+      {
+        title: 'Dashboard przy dużym wolumenie zdarzeń',
+        body: 'Paginacja zamiast ładowania pełnych zbiorów, cache i deduplikacja zapytań w SWR oraz optimistic UI przy zmianach konfiguracji, żeby interfejs odpowiadał natychmiast. Agregację świadomie przeniosłem na backend — to decyzja podjęta przy projektowaniu przepływu danych, a nie obejście problemu w widoku.',
+      },
+    ],
+    challenges_en: [
+      {
+        title: 'A script that must not cost customers their scores',
+        body: 'The script runs on customers’ pages, so every kilobyte and millisecond weighs on their Core Web Vitals. I wrote it in plain TypeScript with minimal dependencies and a Vite config tuned for bundle size; the output weighs 30 kB. Events are sent with sendBeacon and throttled on the client so they don’t load the main thread or the visitor’s network.',
+      },
+      {
+        title: 'A dashboard for a high volume of events',
+        body: 'Pagination instead of loading full data sets, request caching and deduplication with SWR, and optimistic UI for configuration changes so the interface responds instantly. I deliberately moved aggregation to the backend: a decision made while designing the data flow, not a workaround in the view.',
+      },
+    ],
+    outcomes_pl: [
+      'Zdarzenia zbierane z ponad 1,2 mln sesji dziennie.',
+      'Dane z EventTrackera stały się podstawą kilkunastu kolejnych funkcjonalności platformy.',
+      'Dostęp do danych jest osobno monetyzowany w abonamencie.',
+    ],
+    outcomes_en: [
+      'Events collected from over 1.2 million sessions a day.',
+      'EventTracker data became the basis for more than a dozen further platform features.',
+      'Access to the data is monetised separately in the subscription.',
+    ],
+    stack_pl: [
+      {
+        label: 'Dashboard',
+        items: ['React', 'TypeScript', 'SWR', 'Recharts'],
+      },
+      {
+        label: 'Skrypt śledzący',
+        items: [
+          'TypeScript bez frameworka',
+          'Vite',
+          'własna konfiguracja builda',
+        ],
+      },
+      { label: 'CI/CD', items: ['GitHub Actions'] },
+    ],
+    stack_en: [
+      {
+        label: 'Dashboard',
+        items: ['React', 'TypeScript', 'SWR', 'Recharts'],
+      },
+      {
+        label: 'Tracking script',
+        items: ['framework-free TypeScript', 'Vite', 'custom build config'],
+      },
+      { label: 'CI/CD', items: ['GitHub Actions'] },
+    ],
+    links_pl: [
+      {
+        label: 'Strona produktowa',
+        url: 'https://landingi.com/pl/produkt/eventtracker/',
+      },
+      { label: 'Repozytorium', note: 'kod zamknięty' },
+    ],
+    links_en: [
+      {
+        label: 'Product page',
+        url: 'https://landingi.com/pl/produkt/eventtracker/',
+      },
+      { label: 'Repository', note: 'closed source' },
+    ],
   },
   {
     id: 2,
@@ -120,6 +218,7 @@ const projects: ContentTables['projects'] = [
       'An AI agent that turns landing page data into concrete recommendations, with answers streamed live to the interface.',
     metrics_pl: [{ value: 'Kilkuset', label: 'aktywnych klientów' }],
     metrics_en: [{ value: 'Hundreds of', label: 'active customers' }],
+    ...NO_PAGE_SECTIONS,
   },
   {
     id: 3,
@@ -142,6 +241,7 @@ const projects: ContentTables['projects'] = [
       { value: '6', label: 'languages' },
       { value: '5,000+', label: 'translation keys' },
     ],
+    ...NO_PAGE_SECTIONS,
   },
   {
     id: 4,
@@ -158,6 +258,7 @@ const projects: ContentTables['projects'] = [
       'From an unused Sentry to a process where reporting is the default: full context for every error and the noise filtered out.',
     metrics_pl: [],
     metrics_en: [],
+    ...NO_PAGE_SECTIONS,
   },
   {
     id: 5,
@@ -174,6 +275,7 @@ const projects: ContentTables['projects'] = [
       'A tracking plan and a single event layer. Data is comparable across the app and PMs work with it on their own.',
     metrics_pl: [],
     metrics_en: [],
+    ...NO_PAGE_SECTIONS,
   },
   {
     id: 6,
@@ -190,6 +292,7 @@ const projects: ContentTables['projects'] = [
       'AI skills for the team: Jira tasks, PR drafts, code review support and structured feature planning.',
     metrics_pl: [],
     metrics_en: [],
+    ...NO_PAGE_SECTIONS,
   },
 ]
 
@@ -232,10 +335,30 @@ const project_skills: ProjectSkillRow[] = Object.entries(
   })),
 )
 
+const EVENTTRACKER_SCREENSHOTS = [
+  { alt_pl: 'Dashboard analityczny', alt_en: 'Analytics dashboard' },
+  { alt_pl: 'Lista zdarzeń', alt_en: 'Event list' },
+  { alt_pl: 'Ustawienia śledzenia', alt_en: 'Tracking settings' },
+]
+
+const project_screenshots: ContentTables['project_screenshots'] =
+  EVENTTRACKER_SCREENSHOTS.map(({ alt_pl, alt_en }, index) => ({
+    id: index + 1,
+    project_id: idOf(
+      projects,
+      (project) => project.slug === 'eventtracker',
+      'Project: eventtracker',
+    ),
+    storage_path: `fixtures/eventtracker/${index + 1}.svg`,
+    alt_pl,
+    alt_en,
+    sort_order: index + 1,
+  }))
+
 export const FIXTURE_TABLES: ContentTables = {
   skill_categories,
   skills,
   projects,
   project_skills,
-  project_screenshots: [],
+  project_screenshots,
 }

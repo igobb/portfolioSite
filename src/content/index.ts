@@ -4,13 +4,17 @@ import { FIXTURE_TABLES } from './fixtures'
 import type { ContentSource } from './types'
 
 export type {
+  Challenge,
   Metric,
   ProjectCard,
   ProjectCardSlice,
+  ProjectLink,
   ProjectList,
+  ProjectPage,
   Screenshot,
   Skill,
   SkillCategory,
+  StackGroup,
 } from './types'
 
 const PROJECT_CARDS_PER_LOAD = 3
@@ -39,4 +43,8 @@ export async function getProjectCards(
   }: { offset: number; limit?: number },
 ) {
   return contentSource().getProjectCards(locale, { offset, limit })
+}
+
+export async function getProjectPage(locale: Locale, slug: string) {
+  return contentSource().getProjectPage(locale, slug)
 }
