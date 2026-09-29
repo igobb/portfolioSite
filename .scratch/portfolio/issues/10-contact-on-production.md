@@ -8,6 +8,10 @@
 
 **Human in the loop:** the owner creates a Resend account, adds `tgolab.dev` and the DNS records Resend shows; the agent gives step-by-step instructions.
 
+- [ ] Form start timestamp added to the Zod schema, shared by client and server
+- [ ] Submission module with injected message store, notifier, clock and rate limiter: re-validates, silently drops honeypot or too-fast submissions, rejects above the per-IP limit, stores then notifies
+- [ ] Server Action wires the module; the form's send function calls it; rate-limited state in the form
+- [ ] Vitest: valid message stored and notified; invalid input returns field errors; honeypot and too-fast dropped without notification; rate limit rejects; notifier failure keeps the stored message and reports an error
 - [ ] Message store backed by `contact_messages` (server-side, service role key never exposed to the browser); IP stored only as a hash
 - [ ] Rate limiter counts recent messages per hashed IP from the table
 - [ ] Notifier sends via Resend from a verified `tgolab.dev` sender to the owner's notification address, with reply-to set to the visitor's email
