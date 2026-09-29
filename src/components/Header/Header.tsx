@@ -9,14 +9,19 @@ import { MobileMenu } from './components/MobileMenu'
 import { ThemeToggle } from './components/ThemeToggle'
 
 type HeaderProps =
-  { variant: 'home' } | { variant: 'subpage'; current?: 'projects' }
+  | { variant: 'home' }
+  | { variant: 'notFound' }
+  | { variant: 'subpage'; current?: 'projects' }
 
 type Href = ComponentProps<typeof Link>['href']
 
 export function Header(props: HeaderProps) {
   const t = useTranslations('Header')
+
   const isHome = props.variant === 'home'
-  const current = props.variant === 'subpage' ? props.current : undefined
+  const isSubpage = props.variant === 'subpage'
+
+  const current = isSubpage ? props.current : undefined
 
   const isProjectsCurrent = current === 'projects'
 
@@ -39,7 +44,7 @@ export function Header(props: HeaderProps) {
   return (
     <header
       className={
-        isHome
+        !isSubpage
           ? 'relative z-10 bg-panel text-panel-ink xl:absolute xl:inset-x-0 xl:top-0 xl:bg-transparent xl:text-ink'
           : 'relative z-10 border-b-[1.5px] border-ink'
       }
@@ -51,7 +56,7 @@ export function Header(props: HeaderProps) {
             aria-label={t('homeLink')}
             className={`flex items-center gap-3 text-base font-bold ${isHome ? 'xl:hidden' : ''}`}
           >
-            {!isHome && <Logo className="hidden size-10 xl:block" />}
+            {isSubpage && <Logo className="hidden size-10 xl:block" />}
             tgolab
           </Link>
 
@@ -78,7 +83,7 @@ export function Header(props: HeaderProps) {
 
         <nav
           aria-label={t('mainNav')}
-          className={`hidden items-center gap-9 text-[15px] xl:flex ${isHome ? 'text-panel-ink' : ''}`}
+          className={`hidden items-center gap-9 text-[15px] xl:flex ${!isSubpage ? 'text-panel-ink' : ''}`}
         >
           {skillsLink()}
 
@@ -105,11 +110,11 @@ export function Header(props: HeaderProps) {
         <div className="flex items-center gap-2 text-sm xl:hidden">
           <ThemeToggle />
 
-          <LocaleSwitch onPanel={isHome} />
+          <LocaleSwitch onPanel={!isSubpage} />
 
           <MobileMenu
             label={t('menu')}
-            buttonClassName={isHome ? 'border-panel-ink' : 'border-ink'}
+            buttonClassName={!isSubpage ? 'border-panel-ink' : 'border-ink'}
           >
             {skillsLink('border-b border-panel-muted py-3.5')}
 

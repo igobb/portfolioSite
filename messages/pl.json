@@ -52,5 +52,13 @@
   },
   "ProjectCard": {
     "open": "Otwórz"
+  },
+  "NotFound": {
+    "error": "bash: cd: nie ma takiego pliku ani katalogu",
+    "description": "Tej strony tu nie ma. Może szukasz czegoś z tego:",
+    "home": "strona główna",
+    "projects": "projekty",
+    "contact": "kontakt",
+    "caption": "hmm, tu nic nie ma"
   }
 }
