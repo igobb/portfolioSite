@@ -1,5 +1,13 @@
 import type { Locale } from '@/i18n/routing'
-import type { ContentSource, Metric, ProjectCard } from './types'
+import type {
+  Challenge,
+  ContentSource,
+  Metric,
+  ProjectCard,
+  ProjectLink,
+  Screenshot,
+  StackGroup,
+} from './types'
 
 // Row shapes mirror the Supabase tables (ticket 09), so fixtures and the database stay interchangeable.
 export type SkillCategoryRow = {
@@ -29,6 +37,20 @@ export type ProjectRow = {
   summary_en: string
   metrics_pl: Metric[]
   metrics_en: Metric[]
+  problem_pl: string
+  problem_en: string
+  role_pl: string
+  role_en: string
+  built_pl: string[]
+  built_en: string[]
+  challenges_pl: Challenge[]
+  challenges_en: Challenge[]
+  outcomes_pl: string[]
+  outcomes_en: string[]
+  stack_pl: StackGroup[]
+  stack_en: StackGroup[]
+  links_pl: ProjectLink[]
+  links_en: ProjectLink[]
 }
 
 export type ProjectSkillRow = {
@@ -73,25 +95,36 @@ export function createFixtureSource(tables: ContentTables): ContentSource {
       .filter((link) => link.project_id === projectId)
       .flatMap((link) => skillNameById.get(link.skill_id) ?? [])
 
-  const coverOf = (projectId: number, locale: Locale) => {
-    const [first] = tables.project_screenshots
+  const screenshotsOf = (projectId: number, locale: Locale): Screenshot[] =>
+    tables.project_screenshots
       .filter((screenshot) => screenshot.project_id === projectId)
       .toSorted(bySortOrder)
+      .map((screenshot) => ({
+        src: `/${screenshot.storage_path}`,
+        alt: screenshot[`alt_${locale}`],
+      }))
 
-    return first
-      ? { src: `/${first.storage_path}`, alt: first[`alt_${locale}`] }
-      : null
-  }
-
-  const toProjectCard = (project: ProjectRow, locale: Locale): ProjectCard => ({
+  const projectHeadOf = (project: ProjectRow, locale: Locale) => ({
     slug: project.slug,
     title: project[`title_${locale}`],
     context: project[`context_${locale}`],
     summary: project[`summary_${locale}`],
     metrics: project[`metrics_${locale}`],
     skills: skillNamesOf(project.id),
-    cover: coverOf(project.id, locale),
   })
+
+  const toProjectCard = (project: ProjectRow, locale: Locale): ProjectCard => ({
+    ...projectHeadOf(project, locale),
+    cover: screenshotsOf(project.id, locale)[0] ?? null,
+  })
+
+  const nextProjectOf = (index: number, locale: Locale) => {
+    const next = publishedProjects[(index + 1) % publishedProjects.length]
+
+    return next && next !== publishedProjects[index]
+      ? { slug: next.slug, title: next[`title_${locale}`] }
+      : null
+  }
 
   return {
     async getSkillCategories(locale: Locale) {
@@ -133,6 +166,28 @@ export function createFixtureSource(tables: ContentTables): ContentSource {
           .slice(offset, end)
           .map((project) => toProjectCard(project, locale)),
         hasMore: end < publishedProjects.length,
+      }
+    },
+
+    async getProjectPage(locale, slug) {
+      const index = publishedProjects.findIndex(
+        (project) => project.slug === slug,
+      )
+      const project = publishedProjects[index]
+
+      if (!project) return null
+
+      return {
+        ...projectHeadOf(project, locale),
+        screenshots: screenshotsOf(project.id, locale),
+        problem: project[`problem_${locale}`],
+        role: project[`role_${locale}`],
+        built: project[`built_${locale}`],
+        challenges: project[`challenges_${locale}`],
+        outcomes: project[`outcomes_${locale}`],
+        stack: project[`stack_${locale}`],
+        links: project[`links_${locale}`],
+        next: nextProjectOf(index, locale),
       }
     },
   }

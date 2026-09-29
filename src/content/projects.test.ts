@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createFixtureSource, type ContentTables } from './fixture-source'
+import { NO_PAGE_SECTIONS } from './fixtures'
 import { getProjectList } from '.'
 
 const projectRow = (
@@ -20,6 +21,7 @@ const projectRow = (
   summary_en: `Summary ${slug}`,
   metrics_pl: [{ value: '6', label: 'wersji językowych' }],
   metrics_en: [{ value: '6', label: 'languages' }],
+  ...NO_PAGE_SECTIONS,
 })
 
 const tables: ContentTables = {

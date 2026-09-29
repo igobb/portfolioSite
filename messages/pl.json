@@ -52,5 +52,24 @@
   },
   "ProjectCard": {
     "open": "Otwórz"
+  },
+  "ProjectPage": {
+    "promptDirectory": "projekty",
+    "allProjects": "Wszystkie projekty",
+    "skills": "Skille",
+    "metrics": "Metryki",
+    "screenshots": "Zrzuty ekranu",
+    "screenshot": "Zrzut {number}",
+    "previousScreenshot": "Poprzedni zrzut",
+    "nextScreenshot": "Następny zrzut",
+    "problem": "Problem",
+    "role": "Moja rola",
+    "built": "Co zbudowałem",
+    "challenges": "Wyzwania",
+    "outcomes": "Efekt",
+    "stack": "stack.json",
+    "links": "linki",
+    "projectNav": "Nawigacja po projektach",
+    "nextProject": "Następny projekt"
   }
 }

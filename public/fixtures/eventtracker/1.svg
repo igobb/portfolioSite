@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <pattern id="stripes" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(135)">
+      <rect width="2" height="20" fill="#b9b3a4"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#f6f3ea"/>
+  <rect width="1600" height="1000" fill="url(#stripes)" opacity="0.5"/>
+  <text x="800" y="510" font-family="monospace" font-size="40" fill="#5e5a50" text-anchor="middle">[ fixture screenshot 1 / 3 — dashboard ]</text>
+</svg>

@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createFixtureSource, type ContentTables } from './fixture-source'
+import { NO_PAGE_SECTIONS } from './fixtures'
 import { getSkillCategories } from '.'
 
 afterEach(() => {
@@ -15,6 +16,7 @@ const projectText = {
   summary_en: 'Summary',
   metrics_pl: [],
   metrics_en: [],
+  ...NO_PAGE_SECTIONS,
 }
 
 const tables: ContentTables = {

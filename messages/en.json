@@ -52,5 +52,24 @@
   },
   "ProjectCard": {
     "open": "Open"
+  },
+  "ProjectPage": {
+    "promptDirectory": "projects",
+    "allProjects": "All projects",
+    "skills": "Skills",
+    "metrics": "Metrics",
+    "screenshots": "Screenshots",
+    "screenshot": "Screenshot {number}",
+    "previousScreenshot": "Previous screenshot",
+    "nextScreenshot": "Next screenshot",
+    "problem": "Problem",
+    "role": "My role",
+    "built": "What I built",
+    "challenges": "Challenges",
+    "outcomes": "Outcomes",
+    "stack": "stack.json",
+    "links": "links",
+    "projectNav": "Project navigation",
+    "nextProject": "Next project"
   }
 }

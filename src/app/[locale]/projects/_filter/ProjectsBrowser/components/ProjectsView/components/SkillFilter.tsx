@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { SkillChip } from '@/components/SkillChip'
 
 type SkillFilterProps = {
   skills: string[]
@@ -39,24 +40,14 @@ export function SkillFilter({
       </div>
 
       <div className="flex gap-2 overflow-x-auto px-4 whitespace-nowrap xl:flex-wrap xl:px-0">
-        {skills.map((skill) => {
-          const pressed = selectedSkills.includes(skill)
-
-          return (
-            <button
-              key={skill}
-              type="button"
-              aria-pressed={pressed}
-              onClick={() => onToggle(skill)}
-              className={`h-10 shrink-0 border-[1.5px] px-3 text-[13px] xl:h-9 ${
-                pressed ? 'border-ink bg-ink text-paper' : 'border-line'
-              }`}
-            >
-              {pressed && <span aria-hidden>✓ </span>}
-              {skill}
-            </button>
-          )
-        })}
+        {skills.map((skill) => (
+          <SkillChip
+            key={skill}
+            skill={skill}
+            pressed={selectedSkills.includes(skill)}
+            onClick={() => onToggle(skill)}
+          />
+        ))}
       </div>
     </div>
   )
