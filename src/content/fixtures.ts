@@ -1,4 +1,4 @@
-import type { ContentTables, ProjectSkillRow } from './fixture-source'
+import type { ContentTables, ProjectSkillRow } from './table-source'
 
 const skill_categories: ContentTables['skill_categories'] = [
   { id: 1, name_pl: 'Języki', name_en: 'Languages', sort_order: 1 },

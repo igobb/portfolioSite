@@ -11,6 +11,8 @@
 - [ ] Custom domain `portfolio.tgolab.dev` attached in Vercel with HTTPS
 - [ ] Vercel Web Analytics enabled (no cookies, no consent banner)
 - [ ] Production environment variables set (Supabase, revalidation secret, Resend, owner address, content source = Supabase)
+- [ ] Supabase database webhooks (one per Content table) point at `https://portfolio.tgolab.dev/api/revalidate`; the `x-vercel-protection-bypass` header is dropped (production is public)
+- [ ] Vercel Cron Job `/api/keep-alive` listed under Settings → Cron Jobs and a manual run returns 200
 - [ ] `master` protected: PRs only, squash merge only, required CI checks
 - [ ] README updated with the live URL
 - [ ] Manual smoke on production: both Locales, theme, filter, a Project page, contact form, an edit in Supabase appearing live

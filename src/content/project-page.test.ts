@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { createFixtureSource, type ContentTables } from './fixture-source'
+import { createFixtureSource } from './fixture-source'
+import type { ContentTables } from './table-source'
 import { getProjectList, getProjectPage } from '.'
 
 const projectRow = (

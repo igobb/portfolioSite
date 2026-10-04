@@ -49,6 +49,14 @@ flowchart LR
 - **Content changes don't need a deploy.** A Supabase database webhook calls a secured revalidation endpoint and the affected pages are regenerated within seconds.
 - **One content module, two sources.** Production reads Supabase; tests and local development read in-repo fixtures through the same interface, so CI never needs the database.
 
+### Content and revalidation
+
+- **Schema and seed live in the repo:** [`supabase/migrations/`](supabase/migrations/) creates the Content tables, row-level security (anonymous reads of published Content only; Contact messages server-side only) and the `screenshots` Storage bucket; [`supabase/seed.sql`](supabase/seed.sql) loads the initial Skills and Projects.
+- **Reads are cached and tagged.** The Supabase source fetches the Content tables through `fetch` cached under one `content` tag, validates the rows with Zod and resolves them through the same code as the fixtures.
+- **Edits reach the site without a deploy.** A Supabase database webhook on every Content table calls `POST /api/revalidate` with a shared secret; the endpoint invalidates the `content` tag and the next visit renders fresh pages.
+- **Setup** of the Supabase project, Vercel variables and the webhook: [`supabase/README.md`](supabase/README.md).
+- **The free project stays awake.** A daily Vercel Cron (`vercel.json`) calls `GET /api/keep-alive`, which runs a trivial query.
+
 Key decisions are recorded as ADRs in [`docs/adr/`](docs/adr/); the domain vocabulary is in [`CONTEXT.md`](CONTEXT.md).
 
 ## Development workflow
@@ -98,7 +106,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | 06  | Home Projects with "Show more"              | ✅     |
 | 07  | Project page and 404                        | ✅     |
 | 08  | Contact section and form                    | ✅     |
-| 09  | Supabase Content, seed and revalidation     | ⏳     |
+| 09  | Supabase Content, seed and revalidation     | ✅     |
 | 10  | Contact on production: Supabase and Resend  | ⏳     |
 | 11  | English version                             | ⏳     |
 | 12  | Machine readability                         | ⏳     |
@@ -108,7 +116,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 
 ## Running locally
 
-Requires Node.js 24 (see `.nvmrc`). The app runs without any accounts.
+Requires Node.js 24 (see `.nvmrc`). The app runs without any accounts: Content comes from in-repo fixtures unless `CONTENT_SOURCE=supabase` is set (see [`.env.example`](.env.example)).
 
 ```bash
 npm install
