@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { requiredEnv } from '@/env/required-env'
 import { contentTablesSchema } from './content-tables-schema'
 import { createTableSource, type ContentTables } from './table-source'
 import type { ContentSource } from './types'
@@ -14,12 +15,6 @@ const TABLE_NAMES = [
   'project_skills',
   'project_screenshots',
 ] as const satisfies (keyof ContentTables)[]
-
-function requiredEnv(name: string) {
-  const value = process.env[name]
-  if (!value) throw new Error(`Missing environment variable ${name}`)
-  return value
-}
 
 function supabaseClient(cacheOptions: RequestInit) {
   return createClient(

@@ -96,6 +96,7 @@
     "sentTitle": "Wiadomość wysłana ✓",
     "sent": "Dzięki! Odpiszę najszybciej, jak się da.",
     "failed": "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz na e-mail.",
+    "rateLimited": "Wysłano już kilka wiadomości. Spróbuj ponownie za kilka minut albo napisz bezpośrednio na mój adres e-mail.",
     "errors": {
       "nameRequired": "Podaj imię.",
       "nameTooLong": "Imię może mieć najwyżej {nameMax} znaków.",

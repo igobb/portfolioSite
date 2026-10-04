@@ -14,6 +14,7 @@ export type ContactFieldError = (typeof CONTACT_FIELD_ERRORS)[number]
 export const NAME_MAX_LENGTH = 100
 export const MESSAGE_MIN_LENGTH = 10
 export const MESSAGE_MAX_LENGTH = 5_000
+export const MIN_FILL_TIME_MS = 3_000
 
 const errorKey = (key: ContactFieldError) => key
 
@@ -35,16 +36,23 @@ export const contactMessageSchema = z.object({
     .max(MESSAGE_MAX_LENGTH, errorKey('messageTooLong')),
   // Honeypot
   website: z.string().max(500),
+  startedAt: z.number().int().nonnegative(),
 })
 
 export type ContactFormValues = z.input<typeof contactMessageSchema>
 
 export type ContactMessage = Omit<
   z.output<typeof contactMessageSchema>,
-  'website'
+  'website' | 'startedAt'
 >
 
 export type ContactFormField = keyof ContactMessage
+
+export const CONTACT_FORM_FIELDS = [
+  'name',
+  'email',
+  'message',
+] as const satisfies readonly ContactFormField[]
 
 export const isContactFieldError = (
   value: unknown,

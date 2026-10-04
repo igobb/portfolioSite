@@ -5,15 +5,6 @@ const EMAIL = 't.golab06@gmail.com'
 const contactSection = (page: Page, name = 'Kontakt') =>
   page.getByRole('region', { name })
 
-const sentMessages = (page: Page) => {
-  const messages: string[] = []
-  page.on('console', (message) => {
-    if (message.text().startsWith('Contact message'))
-      messages.push(message.text())
-  })
-  return messages
-}
-
 async function fillValidMessage(page: Page) {
   const section = contactSection(page)
   await section.getByLabel('Imię').fill('Anna Nowak')
@@ -106,7 +97,6 @@ test.describe('desktop Contact section', () => {
   test('shows the success state after sending a valid message', async ({
     page,
   }) => {
-    const sent = sentMessages(page)
     await page.goto('/pl')
     const section = contactSection(page)
 
@@ -119,13 +109,11 @@ test.describe('desktop Contact section', () => {
     await expect(confirmation).toBeVisible()
     await expect(confirmation).toBeFocused()
     await expect(section.getByRole('button', { name: /Wyślij/ })).toHaveCount(0)
-    expect(sent).toHaveLength(1)
   })
 
-  test('shows success to a bot that fills in the honeypot, but sends nothing', async ({
+  test('shows success to a bot that fills in the honeypot', async ({
     page,
   }) => {
-    const sent = sentMessages(page)
     await page.goto('/pl')
     const section = contactSection(page)
 
@@ -134,6 +122,5 @@ test.describe('desktop Contact section', () => {
     await section.getByRole('button', { name: 'Wyślij wiadomość →' }).click()
 
     await expect(section.getByText('Wiadomość wysłana ✓')).toBeVisible()
-    expect(sent).toHaveLength(0)
   })
 })

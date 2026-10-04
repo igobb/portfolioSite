@@ -18,6 +18,8 @@ export default defineConfig({
     // CI builds in an earlier step; locally build first so tests always hit a production build.
     command: isCI ? 'npm run start' : 'npm run build && npm run start',
     url: `http://localhost:${PORT}/pl`,
+    // A reused local dev server keeps its own CONTACT_DELIVERY; run on another PORT if it is 'live'.
+    env: { CONTACT_DELIVERY: 'log' },
     reuseExistingServer: !isCI,
     timeout: 180_000,
   },
