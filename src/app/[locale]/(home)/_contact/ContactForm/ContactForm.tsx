@@ -1,10 +1,11 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
+  CONTACT_FORM_FIELDS,
   contactMessageSchema,
   isContactFieldError,
   MESSAGE_MAX_LENGTH,
@@ -16,10 +17,12 @@ import {
 import { sendContactMessage } from '../send-contact-message'
 import { FormField } from './components/FormField'
 
-type SubmitStatus = 'idle' | 'sent' | 'failed'
+type SubmitStatus = 'idle' | 'sent' | 'failed' | 'rate-limited'
 
 export function ContactForm() {
   const t = useTranslations('Contact')
+
+  const locale = useLocale()
 
   const [status, setStatus] = useState<SubmitStatus>('idle')
 
@@ -28,28 +31,47 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
+    setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactMessageSchema),
-    defaultValues: { name: '', email: '', message: '', website: '' },
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+      website: '',
+      startedAt: 0,
+    },
   })
+
+  useEffect(() => {
+    setValue('startedAt', Date.now())
+  }, [setValue])
 
   useEffect(() => {
     if (status === 'sent') sentRef.current?.focus()
   }, [status])
 
-  const send = handleSubmit(async ({ website, ...message }) => {
-    // Only bots fill in the hidden honeypot; they see the same success as people, but nothing is sent.
-    if (website !== '') {
-      setStatus('sent')
-
-      return
-    }
-
+  const send = handleSubmit(async (values) => {
     try {
-      await sendContactMessage(message)
+      const result = await sendContactMessage(values, locale)
 
-      setStatus('sent')
+      if (result.status !== 'invalid') {
+        setStatus(result.status)
+
+        return
+      }
+
+      const invalidFields = CONTACT_FORM_FIELDS.filter(
+        (field) => result.fieldErrors[field],
+      )
+
+      invalidFields.forEach((field) =>
+        setError(field, { message: result.fieldErrors[field] }),
+      )
+
+      setStatus(invalidFields.length > 0 ? 'idle' : 'failed')
     } catch {
       setStatus('failed')
     }
@@ -83,6 +105,16 @@ export function ContactForm() {
   }
 
   const hasFailed = status === 'failed'
+
+  const isRateLimited = status === 'rate-limited'
+
+  const statusText = isSubmitting
+    ? null
+    : hasFailed
+      ? t('failed')
+      : isRateLimited
+        ? t('rateLimited')
+        : null
 
   const buttonLabel = isSubmitting
     ? t('sending')
@@ -148,18 +180,20 @@ export function ContactForm() {
       </div>
 
       <p role="status" className="text-sm font-bold">
-        {hasFailed && !isSubmitting ? t('failed') : null}
+        {statusText}
       </p>
 
-      <button
-        type="submit"
-        aria-disabled={isSubmitting}
-        className={`h-[52px] bg-accent px-[26px] text-[15px] font-bold text-white xl:self-start ${
-          isSubmitting ? 'cursor-wait' : ''
-        }`}
-      >
-        {buttonLabel}
-      </button>
+      {isRateLimited ? null : (
+        <button
+          type="submit"
+          aria-disabled={isSubmitting}
+          className={`h-[52px] bg-accent px-[26px] text-[15px] font-bold text-white xl:self-start ${
+            isSubmitting ? 'cursor-wait' : ''
+          }`}
+        >
+          {buttonLabel}
+        </button>
+      )}
     </form>
   )
 }

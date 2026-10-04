@@ -96,6 +96,7 @@
     "sentTitle": "Message sent ✓",
     "sent": "Thanks! I will get back to you as soon as I can.",
     "failed": "The message could not be sent. Try again or write an email.",
+    "rateLimited": "You have already sent a few messages. Try again in a few minutes or email me directly.",
     "errors": {
       "nameRequired": "Enter your name.",
       "nameTooLong": "The name can be at most {nameMax} characters long.",
