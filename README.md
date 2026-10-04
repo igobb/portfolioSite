@@ -106,7 +106,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | 06  | Home Projects with "Show more"              | ✅     |
 | 07  | Project page and 404                        | ✅     |
 | 08  | Contact section and form                    | ✅     |
-| 09  | Supabase Content, seed and revalidation     | ⏳     |
+| 09  | Supabase Content, seed and revalidation     | ✅     |
 | 10  | Contact on production: Supabase and Resend  | ⏳     |
 | 11  | English version                             | ⏳     |
 | 12  | Machine readability                         | ⏳     |
