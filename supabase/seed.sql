@@ -1,6 +1,5 @@
 -- Initial Content: the approved Skill list and the six Projects.
 -- Run once on an empty database, after the migrations.
--- Project page sections exist only in Polish for now, so their English columns repeat the Polish text; ticket 11 translates them before launch.
 
 insert into public.skill_categories (name_pl, name_en, sort_order) values
   ('Języki', 'Languages', 1),
@@ -112,7 +111,7 @@ insert into public.projects (
   '[{"label":"Dashboard","items":["React","TypeScript","SWR","Recharts"]},{"label":"Skrypt śledzący","items":["TypeScript bez frameworka","Vite","własna konfiguracja builda"]},{"label":"CI/CD","items":["GitHub Actions"]}]',
   '[{"label":"Dashboard","items":["React","TypeScript","SWR","Recharts"]},{"label":"Tracking script","items":["framework-free TypeScript","Vite","custom build config"]},{"label":"CI/CD","items":["GitHub Actions"]}]',
   '[{"label":"Strona produktowa","url":"https://landingi.com/pl/produkt/eventtracker/"},{"label":"Repozytorium","note":"kod zamknięty"}]',
-  '[{"label":"Product page","url":"https://landingi.com/pl/produkt/eventtracker/"},{"label":"Repository","note":"closed source"}]'
+  '[{"label":"Product page","url":"https://landingi.com/product/eventtracker/"},{"label":"Repository","note":"closed source"}]'
 );
 
 insert into public.projects (
@@ -154,19 +153,19 @@ insert into public.projects (
   '[{"value":"Kilkuset","label":"aktywnych klientów"}]',
   '[{"value":"Hundreds of","label":"active customers"}]',
   'Klienci Landingi mają dostęp do dużej ilości danych o swoich landing page’ach, ale samo posiadanie danych nie mówi im, co poprawić. Solis interpretuje te dane i zamienia je w konkretne rekomendacje.',
-  'Klienci Landingi mają dostęp do dużej ilości danych o swoich landing page’ach, ale samo posiadanie danych nie mówi im, co poprawić. Solis interpretuje te dane i zamienia je w konkretne rekomendacje.',
+  'Landingi customers have plenty of data about their landing pages, but having the data doesn’t tell them what to improve. Solis interprets that data and turns it into concrete recommendations.',
   'Warstwa frontowa produktu oraz agent AI. Endpointy, z których agent korzysta w swoich skillach, powstały po stronie backendu; architekturę całości ustalaliśmy wspólnie w zespole. Agent korzysta między innymi z danych zbieranych przez EventTracker, którego architekturę i frontend budowałem wcześniej.',
-  'Warstwa frontowa produktu oraz agent AI. Endpointy, z których agent korzysta w swoich skillach, powstały po stronie backendu; architekturę całości ustalaliśmy wspólnie w zespole. Agent korzysta między innymi z danych zbieranych przez EventTracker, którego architekturę i frontend budowałem wcześniej.',
+  'The product’s frontend and the AI agent. The endpoints the agent calls from its skills were built on the backend, and we agreed on the overall architecture together as a team. Among other sources, the agent uses data collected by EventTracker, whose architecture and frontend I had built earlier.',
   '["Agent AI oparty o Mastrę — pojedynczy agent z zestawem skilli sięgających po dane o stronie i zachowaniu użytkowników.","Dobór modelu pod kątem relacji kosztu do jakości odpowiedzi, zamiast domyślnego sięgania po najdroższy dostępny.","Historia rozmowy w wątkach, utrzymywana po stronie backendu.","Odpowiedzi w markdownie streamowane do interfejsu, żeby użytkownik widział tekst w trakcie generowania, a nie czekał na całość.","Udział w generowaniu insightów w tle: strony klientów są analizowane pod kątem kilku aspektów, razem z danymi behawioralnymi z EventTrackera, a sam insight powstaje w przepływie zbudowanym w n8n."]',
-  '["Agent AI oparty o Mastrę — pojedynczy agent z zestawem skilli sięgających po dane o stronie i zachowaniu użytkowników.","Dobór modelu pod kątem relacji kosztu do jakości odpowiedzi, zamiast domyślnego sięgania po najdroższy dostępny.","Historia rozmowy w wątkach, utrzymywana po stronie backendu.","Odpowiedzi w markdownie streamowane do interfejsu, żeby użytkownik widział tekst w trakcie generowania, a nie czekał na całość.","Udział w generowaniu insightów w tle: strony klientów są analizowane pod kątem kilku aspektów, razem z danymi behawioralnymi z EventTrackera, a sam insight powstaje w przepływie zbudowanym w n8n."]',
+  '["An AI agent built on Mastra: a single agent with a set of skills that fetch data about the page and about visitor behaviour.","Choosing the model for the best balance of cost and answer quality, instead of defaulting to the most expensive one available.","Conversation history kept in threads on the backend.","Markdown answers streamed to the interface, so users see the text as it is generated instead of waiting for the whole response.","Contributing to background insight generation: customers’ pages are analysed from several angles together with behavioural data from EventTracker, and the insight itself is produced in a workflow built in n8n."]',
   '[{"title":"Koszt wywołań modelu","body":"Ograniczany przez skracanie kontekstu przekazywanego do modelu oraz cache, zamiast wysyłania pełnych zestawów danych przy każdym zapytaniu."},{"title":"Niedeterminizm","body":"Odpowiedź modelu nie jest powtarzalna, więc interfejs i przepływ muszą znosić zmienną jakość i formę wyniku."},{"title":"Błędy i timeouty modelu","body":"W zależności od tego, co konkretnie zawiodło, użytkownik dostaje odpowiedni widok błędu z możliwością ponowienia pytania, zamiast pustego ekranu."}]',
-  '[{"title":"Koszt wywołań modelu","body":"Ograniczany przez skracanie kontekstu przekazywanego do modelu oraz cache, zamiast wysyłania pełnych zestawów danych przy każdym zapytaniu."},{"title":"Niedeterminizm","body":"Odpowiedź modelu nie jest powtarzalna, więc interfejs i przepływ muszą znosić zmienną jakość i formę wyniku."},{"title":"Błędy i timeouty modelu","body":"W zależności od tego, co konkretnie zawiodło, użytkownik dostaje odpowiedni widok błędu z możliwością ponowienia pytania, zamiast pustego ekranu."}]',
+  '[{"title":"The cost of model calls","body":"Kept down by trimming the context sent to the model and by caching, instead of sending full data sets with every request."},{"title":"Non-determinism","body":"The model’s answers aren’t repeatable, so the interface and the flow have to cope with output that varies in quality and form."},{"title":"Model errors and timeouts","body":"Depending on what exactly failed, the user gets a matching error view with the option to ask again, instead of a blank screen."}]',
   '["Z funkcjonalności korzysta kilkuset klientów, którzy aktywnie pytają o insighty i dane, żeby poprawiać skuteczność swoich landing page’y."]',
-  '["Z funkcjonalności korzysta kilkuset klientów, którzy aktywnie pytają o insighty i dane, żeby poprawiać skuteczność swoich landing page’y."]',
+  '["Hundreds of customers use the feature, actively asking for insights and data to improve how their landing pages perform."]',
   '[{"label":"Frontend","items":["React","TypeScript"]},{"label":"Agent AI","items":["Mastra","Vercel AI SDK"]},{"label":"Automatyzacje","items":["n8n"]}]',
-  '[{"label":"Frontend","items":["React","TypeScript"]},{"label":"Agent AI","items":["Mastra","Vercel AI SDK"]},{"label":"Automatyzacje","items":["n8n"]}]',
+  '[{"label":"Frontend","items":["React","TypeScript"]},{"label":"AI agent","items":["Mastra","Vercel AI SDK"]},{"label":"Automation","items":["n8n"]}]',
   '[{"label":"Strona produktowa","url":"https://landingi.com/pl/produkt/solis/"},{"label":"Repozytorium","note":"kod zamknięty"}]',
-  '[{"label":"Strona produktowa","url":"https://landingi.com/pl/produkt/solis/"},{"label":"Repozytorium","note":"kod zamknięty"}]'
+  '[{"label":"Product page","url":"https://landingi.com/product/solis/"},{"label":"Repository","note":"closed source"}]'
 );
 
 insert into public.projects (
@@ -208,19 +207,19 @@ insert into public.projects (
   '[{"value":"6","label":"wersji językowych"},{"value":"5 000+","label":"kluczy tłumaczeń"}]',
   '[{"value":"6","label":"languages"},{"value":"5,000+","label":"translation keys"}]',
   'Aplikacja Landingi obsługiwała jeden język, a każda zmiana tekstu wymagała udziału dewelopera — tłumacze nie mieli jak pracować samodzielnie.',
-  'Aplikacja Landingi obsługiwała jeden język, a każda zmiana tekstu wymagała udziału dewelopera — tłumacze nie mieli jak pracować samodzielnie.',
+  'The Landingi app supported a single language, and every text change needed a developer, so translators had no way to work on their own.',
   'Wdrożenie i18n w istniejącej aplikacji od zera oraz zbudowanie procesu tłumaczeń wokół Lokalise.',
-  'Wdrożenie i18n w istniejącej aplikacji od zera oraz zbudowanie procesu tłumaczeń wokół Lokalise.',
+  'Introducing i18n into an existing app from scratch and building the translation workflow around Lokalise.',
   '["Warstwa i18n w aplikacji — wydzielenie tekstów z kodu do ponad 5 000 kluczy tłumaczeń.","Dwukierunkowa automatyzacja z Lokalise: wypychanie nowych kluczy z repozytorium i pobieranie gotowych tłumaczeń bez ręcznej pracy.","Własny skrypt wykrywający klucze nieużywane w kodzie — przy tej skali martwe pozycje realnie podbijały koszt subskrypcji Lokalise, więc ich usuwanie przełożyło się bezpośrednio na niższy rachunek."]',
-  '["Warstwa i18n w aplikacji — wydzielenie tekstów z kodu do ponad 5 000 kluczy tłumaczeń.","Dwukierunkowa automatyzacja z Lokalise: wypychanie nowych kluczy z repozytorium i pobieranie gotowych tłumaczeń bez ręcznej pracy.","Własny skrypt wykrywający klucze nieużywane w kodzie — przy tej skali martwe pozycje realnie podbijały koszt subskrypcji Lokalise, więc ich usuwanie przełożyło się bezpośrednio na niższy rachunek."]',
+  '["The app’s i18n layer: moving the texts out of the code into more than 5,000 translation keys.","Two-way automation with Lokalise: new keys are pushed from the repository and finished translations are pulled back with no manual work.","A custom script that finds keys no longer used in the code. At this scale dead keys noticeably raised the Lokalise subscription cost, so removing them directly lowered the bill."]',
   '[]',
   '[]',
   '["Tłumacze pracują samodzielnie w Lokalise, bez angażowania dewelopera do zmiany pojedynczego napisu.","Poprawka błędnego tłumaczenia trafia do aplikacji w minuty, zamiast czekać na cykl wydawniczy.","Deweloperzy przestali być wąskim gardłem w procesie tłumaczeń.","Kilkuset klientów korzysta z aplikacji w swoim języku.","Niższy koszt subskrypcji narzędzia dzięki eliminacji martwych kluczy."]',
-  '["Tłumacze pracują samodzielnie w Lokalise, bez angażowania dewelopera do zmiany pojedynczego napisu.","Poprawka błędnego tłumaczenia trafia do aplikacji w minuty, zamiast czekać na cykl wydawniczy.","Deweloperzy przestali być wąskim gardłem w procesie tłumaczeń.","Kilkuset klientów korzysta z aplikacji w swoim języku.","Niższy koszt subskrypcji narzędzia dzięki eliminacji martwych kluczy."]',
+  '["Translators work on their own in Lokalise, without needing a developer to change a single label.","A fix to a wrong translation reaches the app within minutes instead of waiting for the release cycle.","Developers are no longer a bottleneck in the translation process.","Hundreds of customers use the app in their own language.","A lower subscription cost for the tool, thanks to removing dead keys."]',
   '[{"label":"Aplikacja","items":["i18next","react-i18next"]},{"label":"Proces tłumaczeń","items":["Lokalise API","GitHub Actions"]}]',
-  '[{"label":"Aplikacja","items":["i18next","react-i18next"]},{"label":"Proces tłumaczeń","items":["Lokalise API","GitHub Actions"]}]',
+  '[{"label":"App","items":["i18next","react-i18next"]},{"label":"Translation workflow","items":["Lokalise API","GitHub Actions"]}]',
   '[{"label":"Aplikacja (po zalogowaniu)","url":"https://app.landingi.com"},{"label":"Repozytorium","note":"kod zamknięty"}]',
-  '[{"label":"Aplikacja (po zalogowaniu)","url":"https://app.landingi.com"},{"label":"Repozytorium","note":"kod zamknięty"}]'
+  '[{"label":"App (login required)","url":"https://app.landingi.com"},{"label":"Repository","note":"closed source"}]'
 );
 
 insert into public.projects (
@@ -262,19 +261,19 @@ insert into public.projects (
   '[]',
   '[]',
   'Sentry było w projekcie obecne, ale praktycznie nieużywane — błędy z frontendu nie trafiały do systemu, a o awariach na produkcji zespół dowiadywał się od klientów.',
-  'Sentry było w projekcie obecne, ale praktycznie nieużywane — błędy z frontendu nie trafiały do systemu, a o awariach na produkcji zespół dowiadywał się od klientów.',
+  'Sentry was set up in the project but barely used: frontend errors weren’t reaching it, and the team learned about production failures from customers.',
   'Uporządkowanie obsługi błędów w całej aplikacji SPA i zbudowanie narzędzia, dzięki któremu raportowanie stało się domyślnym zachowaniem, a nie dodatkową pracą.',
-  'Uporządkowanie obsługi błędów w całej aplikacji SPA i zbudowanie narzędzia, dzięki któremu raportowanie stało się domyślnym zachowaniem, a nie dodatkową pracą.',
+  'Bringing order to error handling across the whole SPA and building a tool that made reporting the default behaviour rather than extra work.',
   '["Własna funkcja raportująca, upraszczająca logowanie błędów z frontendu. Podpięta przy każdym pobieraniu danych z backendu — wysyła kod błędu wraz z pełnym kontekstem potrzebnym do debugowania.","Wzbogacanie zdarzeń o kontekst: użytkownik, wersja aplikacji, release, breadcrumbs.","Filtrowanie szumu — wyciszenie błędów z rozszerzeń przeglądarki, botów i ResizeObservera, dzięki czemu w Sentry zostały wyłącznie zdarzenia, na które warto reagować."]',
-  '["Własna funkcja raportująca, upraszczająca logowanie błędów z frontendu. Podpięta przy każdym pobieraniu danych z backendu — wysyła kod błędu wraz z pełnym kontekstem potrzebnym do debugowania.","Wzbogacanie zdarzeń o kontekst: użytkownik, wersja aplikacji, release, breadcrumbs.","Filtrowanie szumu — wyciszenie błędów z rozszerzeń przeglądarki, botów i ResizeObservera, dzięki czemu w Sentry zostały wyłącznie zdarzenia, na które warto reagować."]',
+  '["A custom reporting function that makes logging frontend errors simple. It is hooked into every data fetch from the backend and sends the error code with the full context needed for debugging.","Enriching events with context: user, app version, release and breadcrumbs.","Filtering out noise: silencing errors from browser extensions, bots and ResizeObserver, so only events worth acting on reach Sentry."]',
   '[]',
   '[]',
   '["Błędy produkcyjne wykrywane szybciej, w części przypadków zanim zgłosi je klient.","Krótszy czas debugowania — zgłoszenie zawiera od razu wszystko, co potrzebne, bez odtwarzania sytuacji u siebie.","Mniej zgłoszeń trafiających do supportu."]',
-  '["Błędy produkcyjne wykrywane szybciej, w części przypadków zanim zgłosi je klient.","Krótszy czas debugowania — zgłoszenie zawiera od razu wszystko, co potrzebne, bez odtwarzania sytuacji u siebie.","Mniej zgłoszeń trafiających do supportu."]',
+  '["Production errors are caught sooner, in some cases before a customer reports them.","Faster debugging: every report contains everything needed up front, with no need to reproduce the issue locally.","Fewer tickets reaching support."]',
   '[{"label":"Aplikacja","items":["Sentry","React","TypeScript"]}]',
-  '[{"label":"Aplikacja","items":["Sentry","React","TypeScript"]}]',
+  '[{"label":"App","items":["Sentry","React","TypeScript"]}]',
   '[{"label":"Repozytorium","note":"kod zamknięty"}]',
-  '[{"label":"Repozytorium","note":"kod zamknięty"}]'
+  '[{"label":"Repository","note":"closed source"}]'
 );
 
 insert into public.projects (
@@ -316,19 +315,19 @@ insert into public.projects (
   '[]',
   '[]',
   'Mixpanel był używany bez żadnej konwencji — każdy nazywał zdarzenia po swojemu, to samo działanie trafiało do systemu pod kilkoma nazwami, brakowało właściwości i dokumentacji. Danych nie dało się porównywać ani na nich polegać.',
-  'Mixpanel był używany bez żadnej konwencji — każdy nazywał zdarzenia po swojemu, to samo działanie trafiało do systemu pod kilkoma nazwami, brakowało właściwości i dokumentacji. Danych nie dało się porównywać ani na nich polegać.',
+  'Mixpanel was used without any convention: everyone named events their own way, the same action was tracked under several names, and properties and documentation were missing. The data couldn’t be compared or relied on.',
   'Opracowanie standardu śledzenia zdarzeń dla całej aplikacji i zbudowanie warstwy, która wymusza go w kodzie.',
-  'Opracowanie standardu śledzenia zdarzeń dla całej aplikacji i zbudowanie warstwy, która wymusza go w kodzie.',
+  'Designing an event tracking standard for the whole app and building a layer that enforces it in code.',
   '["Tracking plan — konwencja nazewnictwa zdarzeń i ich właściwości, obowiązująca w całej aplikacji.","Wspólna funkcja wysyłająca zdarzenia, zbudowana analogicznie do warstwy raportowania błędów — jedno wejście zamiast rozproszonych wywołań SDK.","Uporządkowanie istniejących danych: usunięcie duplikatów i martwych zdarzeń narosłych przez lata.","Dokumentacja dla zespołu produktowego."]',
-  '["Tracking plan — konwencja nazewnictwa zdarzeń i ich właściwości, obowiązująca w całej aplikacji.","Wspólna funkcja wysyłająca zdarzenia, zbudowana analogicznie do warstwy raportowania błędów — jedno wejście zamiast rozproszonych wywołań SDK.","Uporządkowanie istniejących danych: usunięcie duplikatów i martwych zdarzeń narosłych przez lata.","Dokumentacja dla zespołu produktowego."]',
+  '["A tracking plan: a naming convention for events and their properties that applies across the whole app.","A shared function for sending events, built the same way as the error reporting layer: one entry point instead of SDK calls scattered around the code.","Cleaning up the existing data: removing duplicates and dead events that had piled up over the years.","Documentation for the product team."]',
   '[]',
   '[]',
   '["Product managerowie pracują na danych samodzielnie, bez dopytywania dewelopera, czym różni się jedno podobnie brzmiące zdarzenie od drugiego.","Deweloperzy dodają nowe zdarzenia przez jedną funkcję, więc zgodność ze standardem jest domyślna, a nie zależna od czyjejś pamięci.","Dane z różnych obszarów aplikacji stały się porównywalne."]',
-  '["Product managerowie pracują na danych samodzielnie, bez dopytywania dewelopera, czym różni się jedno podobnie brzmiące zdarzenie od drugiego.","Deweloperzy dodają nowe zdarzenia przez jedną funkcję, więc zgodność ze standardem jest domyślna, a nie zależna od czyjejś pamięci.","Dane z różnych obszarów aplikacji stały się porównywalne."]',
+  '["Product managers work with the data on their own, without asking a developer how one similar-sounding event differs from another.","Developers add new events through a single function, so following the standard is the default rather than a matter of memory.","Data from different areas of the app became comparable."]',
   '[{"label":"Aplikacja","items":["Mixpanel","React","TypeScript"]}]',
-  '[{"label":"Aplikacja","items":["Mixpanel","React","TypeScript"]}]',
+  '[{"label":"App","items":["Mixpanel","React","TypeScript"]}]',
   '[{"label":"Repozytorium","note":"kod zamknięty"}]',
-  '[{"label":"Repozytorium","note":"kod zamknięty"}]'
+  '[{"label":"Repository","note":"closed source"}]'
 );
 
 insert into public.projects (
@@ -370,17 +369,17 @@ insert into public.projects (
   '[]',
   '[]',
   'Powtarzalne czynności wokół kodu — zakładanie tasków, opisywanie pull requestów, code review, planowanie nowych funkcjonalności — pochłaniały czas zespołu i były wykonywane różnie przez różne osoby.',
-  'Powtarzalne czynności wokół kodu — zakładanie tasków, opisywanie pull requestów, code review, planowanie nowych funkcjonalności — pochłaniały czas zespołu i były wykonywane różnie przez różne osoby.',
+  'Repetitive work around the code (creating tasks, describing pull requests, code review, planning new features) took up the team’s time and was done differently by different people.',
   'Tworzenie i wdrażanie skilli AI oraz automatyzacji dla zespołu deweloperskiego, standaryzujących te czynności i skracających czas potrzebny na ich wykonanie.',
-  'Tworzenie i wdrażanie skilli AI oraz automatyzacji dla zespołu deweloperskiego, standaryzujących te czynności i skracających czas potrzebny na ich wykonanie.',
+  'Creating and rolling out AI skills and automations for the development team that standardise this work and cut the time it takes.',
   '["Automatyzacja zakładania tasków w Jirze.","Generowanie draftów pull requestów zgodnych z firmową konwencją opisu.","Wsparcie procesu code review.","Ustrukturyzowane planowanie funkcjonalności od pierwszego kroku, w oparciu o proces AI Hero Matta Pococka (aihero.dev), dostosowany do sposobu pracy zespołu."]',
-  '["Automatyzacja zakładania tasków w Jirze.","Generowanie draftów pull requestów zgodnych z firmową konwencją opisu.","Wsparcie procesu code review.","Ustrukturyzowane planowanie funkcjonalności od pierwszego kroku, w oparciu o proces AI Hero Matta Pococka (aihero.dev), dostosowany do sposobu pracy zespołu."]',
+  '["Automated creation of Jira tasks.","Pull request drafts generated to follow the company’s description convention.","Support for the code review process.","Structured feature planning from the very first step, based on Matt Pocock’s AI Hero process (aihero.dev) and adapted to the way the team works."]',
   '[]',
   '[]',
   '["Powtarzalne czynności wokół kodu wykonywane szybciej i w jednym, spójnym standardzie niezależnie od osoby.","Ujednolicone podejście do planowania funkcjonalności przed rozpoczęciem implementacji.","Narzędzia używane przez cały zespół, nie tylko przeze mnie."]',
-  '["Powtarzalne czynności wokół kodu wykonywane szybciej i w jednym, spójnym standardzie niezależnie od osoby.","Ujednolicone podejście do planowania funkcjonalności przed rozpoczęciem implementacji.","Narzędzia używane przez cały zespół, nie tylko przeze mnie."]',
+  '["Repetitive work around the code gets done faster and to one consistent standard, whoever does it.","A shared approach to planning features before implementation starts.","Tools used by the whole team, not just by me."]',
   '[{"label":"Narzędzia","items":["Codex","AGENTS.md","GitHub","Jira"]}]',
-  '[{"label":"Narzędzia","items":["Codex","AGENTS.md","GitHub","Jira"]}]',
+  '[{"label":"Tools","items":["Codex","AGENTS.md","GitHub","Jira"]}]',
   '[]',
   '[]'
 );

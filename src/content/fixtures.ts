@@ -198,7 +198,7 @@ const projects: ContentTables['projects'] = [
     links_en: [
       {
         label: 'Product page',
-        url: 'https://landingi.com/pl/produkt/eventtracker/',
+        url: 'https://landingi.com/product/eventtracker/',
       },
       { label: 'Repository', note: 'closed source' },
     ],

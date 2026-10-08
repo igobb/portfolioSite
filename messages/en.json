@@ -3,7 +3,7 @@
     "description": "Tomasz Gołąb's portfolio: skills and projects."
   },
   "Header": {
-    "homeLink": "tgolab – home page",
+    "homeLink": "tgolab – home",
     "mainNav": "Main",
     "skills": "Skills",
     "portfolio": "Portfolio",
@@ -13,7 +13,7 @@
     "menu": "Menu"
   },
   "Footer": {
-    "source": "Source of this site on GitHub"
+    "source": "Source code of this site on GitHub"
   },
   "Logo": {
     "label": "tgolab logo"
@@ -27,25 +27,25 @@
   "Skills": {
     "title": "Skills",
     "promptCommand": "ls ./skills",
-    "legend": "Underlined Skills link to projects that use them."
+    "legend": "Underlined Skills link to the projects where I used them."
   },
   "HomeProjects": {
     "title": "Projects",
     "promptCommand": "ls ./projects | head -3",
-    "allProjects": "All projects · filter by Skill",
+    "allProjects": "All projects · filter by Skills",
     "allProjectsShort": "All projects · filter",
     "showMore": "Show more",
     "loading": "Loading…",
-    "loadError": "Could not load more projects.",
+    "loadError": "Couldn’t load more projects.",
     "retry": "Try again"
   },
   "ProjectsPage": {
     "title": "Projects",
     "promptCommand": "ls ./projects",
-    "homeLink": "Home page",
+    "homeLink": "Home",
     "count": "{total, plural, one {# project} other {# projects}}",
     "filteredCount": "{shown} of {total, plural, one {# project} other {# projects}}",
-    "filterLabel": "Filter by Skill",
+    "filterLabel": "Filter by Skills",
     "clearFilter": "clear filter",
     "noResults": "No projects have all the selected Skills.",
     "noResultsHint": "Deselect a Skill or clear the filter."
@@ -74,7 +74,7 @@
   },
   "NotFound": {
     "error": "bash: cd: no such file or directory",
-    "description": "This page isn't here. Maybe you're looking for one of these:",
+    "description": "This page isn’t here. Maybe you’re looking for one of these:",
     "home": "home",
     "projects": "projects",
     "contact": "contact",
@@ -83,27 +83,27 @@
   "Contact": {
     "promptCommand": "contact --me",
     "title": "Contact",
-    "mailFirst": "Fastest way to reach me:",
+    "mailFirst": "Email is the fastest way to reach me:",
     "cv": "CV (PDF, EN)",
     "formIntro": "Or leave a message:",
     "name": "Name",
-    "email": "E-mail",
+    "email": "Email",
     "message": "Message",
     "website": "Website (leave empty)",
     "send": "Send message",
     "sending": "Sending…",
     "retry": "Try again",
     "sentTitle": "Message sent ✓",
-    "sent": "Thanks! I will get back to you as soon as I can.",
-    "failed": "The message could not be sent. Try again or write an email.",
-    "rateLimited": "You have already sent a few messages. Try again in a few minutes or email me directly.",
+    "sent": "Thanks! I’ll get back to you as soon as I can.",
+    "failed": "Your message couldn’t be sent. Please try again or email me directly.",
+    "rateLimited": "You’ve already sent a few messages. Please try again in a few minutes or email me directly.",
     "errors": {
       "nameRequired": "Enter your name.",
-      "nameTooLong": "The name can be at most {nameMax} characters long.",
+      "nameTooLong": "Your name can be up to {nameMax} characters long.",
       "emailRequired": "Enter your email address.",
-      "emailInvalid": "That does not look like a valid email address.",
-      "messageTooShort": "The message must be at least {min} characters long.",
-      "messageTooLong": "The message can be at most {max} characters long."
+      "emailInvalid": "That doesn’t look like a valid email address.",
+      "messageTooShort": "Your message must be at least {min} characters long.",
+      "messageTooLong": "Your message can be up to {max} characters long."
     }
   },
   "CopyButton": {
