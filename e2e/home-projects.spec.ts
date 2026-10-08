@@ -41,7 +41,7 @@ test.describe('desktop home Projects', () => {
     await page.goto('/en')
 
     await projectsSection(page, 'Projects')
-      .getByRole('link', { name: 'All projects · filter by Skill' })
+      .getByRole('link', { name: 'All projects · filter by Skills' })
       .click()
 
     await expect(page).toHaveURL('/en/projects')

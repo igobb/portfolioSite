@@ -58,6 +58,9 @@ test('a Project page is translated in English', async ({ page }) => {
   await expect(
     page.getByRole('region', { name: 'Screenshots' }).getByRole('img').first(),
   ).toHaveAttribute('alt', 'Analytics dashboard')
+  await expect(
+    page.getByRole('link', { name: 'Product page' }),
+  ).toHaveAttribute('href', 'https://landingi.com/product/eventtracker/')
 })
 
 test('sections without content are omitted and a striped placeholder replaces Screenshots', async ({
