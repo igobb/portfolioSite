@@ -5,7 +5,7 @@ const CATEGORIES_PL = [
   'Frontend',
   'UI i stylowanie',
   'Stan i dane',
-  'Backend i bazy',
+  'Backend i bazy danych',
   'Testy',
   'Narzędzia i wdrożenia',
   'Monitoring i analityka',
@@ -30,8 +30,8 @@ test.describe('desktop Skills section', () => {
           new RegExp(`^${String(index + 1).padStart(2, '0')}\\s*${name}$`),
       ),
     )
-    await expect(section.getByRole('link')).toHaveCount(16)
-    await expect(section.getByRole('listitem')).toHaveCount(42)
+    await expect(section.getByRole('link')).toHaveCount(22)
+    await expect(section.getByRole('listitem')).toHaveCount(44)
     await expect(section.getByRole('link', { name: 'Next.js' })).toHaveCount(0)
     await expect(section.getByText('Next.js', { exact: true })).toBeVisible()
     await expect(
@@ -140,7 +140,7 @@ for (const { locale, section, skill, projectsHeading } of [
     await page.goto(`/${locale}`)
 
     await skillsSection(page, section)
-      .getByRole('link', { name: skill })
+      .getByRole('link', { name: skill, exact: true })
       .click()
 
     await expect(

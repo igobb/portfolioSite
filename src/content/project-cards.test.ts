@@ -133,14 +133,17 @@ describe('getProjectCards', () => {
   })
 
   describe('with the default fixtures', () => {
-    it('loads the six Projects three at a time by default', async () => {
+    it('loads the nine Projects three at a time by default', async () => {
       const first = await getProjectCards('pl', { offset: 0 })
       const second = await getProjectCards('pl', { offset: 3 })
+      const third = await getProjectCards('pl', { offset: 6 })
 
       expect(first.projects).toHaveLength(3)
       expect(first.hasMore).toBe(true)
       expect(second.projects).toHaveLength(3)
-      expect(second.hasMore).toBe(false)
+      expect(second.hasMore).toBe(true)
+      expect(third.projects).toHaveLength(3)
+      expect(third.hasMore).toBe(false)
     })
   })
 })

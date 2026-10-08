@@ -26,7 +26,7 @@ export function ProjectCard({
     <Link
       href={`/projects/${project.slug}`}
       aria-labelledby={titleId}
-      className="group flex flex-col md:h-[680px]"
+      className="group mx-auto flex w-full max-w-[380px] flex-col md:h-[704px]"
     >
       <span className="self-start border-[1.5px] border-b-0 border-ink bg-surface px-3 py-[5px] text-xs md:px-3.5 md:py-1.5 md:text-[13px]">
         {project.slug}/
@@ -47,7 +47,7 @@ export function ProjectCard({
             {project.title}
           </Heading>
 
-          <p className="text-sm leading-[1.6] md:line-clamp-5 md:h-[120px] md:shrink-0 md:text-[15px] md:leading-6">
+          <p className="text-sm leading-[1.6] md:line-clamp-6 md:h-[144px] md:shrink-0 md:text-[15px] md:leading-6">
             {project.summary}
           </p>
 

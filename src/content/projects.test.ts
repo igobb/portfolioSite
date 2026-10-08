@@ -111,17 +111,20 @@ describe('getProjectList', () => {
   })
 
   describe('with the default fixtures', () => {
-    it('lists the six approved Projects in both Locales', async () => {
+    it('lists the nine approved Projects in both Locales', async () => {
       const pl = await getProjectList('pl')
       const en = await getProjectList('en')
 
       const slugs = [
         'eventtracker',
         'solis',
+        'automatyzacje-ai',
         'i18n',
         'raportowanie-bledow',
         'analityka-mixpanel',
-        'automatyzacje-ai',
+        'czat-wsparcia-ai',
+        'rejestracja-i-logowanie',
+        'mapy-klikniec-i-scrolla',
       ]
       expect(pl.projects.map((project) => project.slug)).toEqual(slugs)
       expect(en.projects.map((project) => project.slug)).toEqual(slugs)

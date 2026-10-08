@@ -51,7 +51,7 @@ export function ScreenshotCarousel({
         {screenshots.map((screenshot, index) => (
           <div
             key={screenshot.src}
-            className="relative h-[240px] w-full shrink-0 snap-start sm:h-[420px] xl:h-[620px]"
+            className="relative aspect-video w-full shrink-0 snap-start"
           >
             <Image
               src={screenshot.src}
