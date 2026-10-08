@@ -13,7 +13,7 @@ export function ProjectCover({ cover }: ProjectCoverProps) {
           src={cover.src}
           alt={cover.alt}
           fill
-          sizes="(min-width: 1280px) 380px, (min-width: 768px) 50vw, 100vw"
+          sizes="(min-width: 412px) 380px, 100vw"
           className="object-cover object-top"
         />
       ) : (

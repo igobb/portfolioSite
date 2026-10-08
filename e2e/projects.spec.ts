@@ -3,10 +3,13 @@ import { expect, test, type Page } from '@playwright/test'
 const SLUGS = [
   'eventtracker',
   'solis',
+  'automatyzacje-ai',
   'i18n',
   'raportowanie-bledow',
   'analityka-mixpanel',
-  'automatyzacje-ai',
+  'czat-wsparcia-ai',
+  'rejestracja-i-logowanie',
+  'mapy-klikniec-i-scrolla',
 ]
 
 const skillFilter = (page: Page) => page.getByTestId('skill-filter')
@@ -20,8 +23,8 @@ const skillParams = (page: Page) =>
 test('lists every published Project as a Project card', async ({ page }) => {
   await page.goto('/pl/projects')
 
-  await expect(page.getByText('6 projektów')).toBeVisible()
-  await expect(projectCardTitles(page)).toHaveCount(6)
+  await expect(page.getByText('9 projektów')).toBeVisible()
+  await expect(projectCardTitles(page)).toHaveCount(9)
 
   const hrefs = await page
     .getByRole('main')
@@ -41,12 +44,15 @@ test('selecting two Skills narrows the list and updates the URL', async ({
 
   await expect(chip(page, 'React')).toHaveAttribute('aria-pressed', 'true')
   await expect(chip(page, 'TypeScript')).toHaveAttribute('aria-pressed', 'true')
-  await expect(page.getByText('4 z 6 projektów')).toBeVisible()
+  await expect(page.getByText('7 z 9 projektów')).toBeVisible()
   await expect(projectCardTitles(page)).toHaveText([
     'EventTracker',
     'Solis — agent AI',
     'Raportowanie błędów',
     'Standard analityki w Mixpanel',
+    'Czat wsparcia AI',
+    'Rejestracja i logowanie',
+    'Mapy kliknięć i scrolla',
   ])
   expect(skillParams(page)).toEqual(['React', 'TypeScript'])
 
@@ -64,7 +70,7 @@ test('a combination with no match shows the empty state and reset restores all',
   await expect(
     page.getByText('No projects have all the selected Skills.'),
   ).toBeVisible()
-  await expect(page.getByText('0 of 6 projects')).toBeVisible()
+  await expect(page.getByText('0 of 9 projects')).toBeVisible()
   await expect(projectCardTitles(page)).toHaveCount(0)
 
   await page
@@ -73,8 +79,8 @@ test('a combination with no match shows the empty state and reset restores all',
     .last()
     .click()
 
-  await expect(projectCardTitles(page)).toHaveCount(6)
-  await expect(page.getByText('6 projects')).toBeVisible()
+  await expect(projectCardTitles(page)).toHaveCount(9)
+  await expect(page.getByText('9 projects')).toBeVisible()
   await expect(skillFilter(page).locator('[aria-pressed="true"]')).toHaveCount(
     0,
   )
@@ -84,7 +90,7 @@ test('a combination with no match shows the empty state and reset restores all',
 test('counts a single remaining Project in the singular', async ({ page }) => {
   await page.goto('/en/projects?skill=Mastra')
 
-  await expect(page.getByText('1 of 6 projects')).toBeVisible()
+  await expect(page.getByText('1 of 9 projects')).toBeVisible()
   await expect(projectCardTitles(page)).toHaveText(['Solis — AI agent'])
 })
 

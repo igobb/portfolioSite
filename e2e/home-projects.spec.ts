@@ -13,27 +13,31 @@ const isServerAction = (route: Route) =>
 test.describe('desktop home Projects', () => {
   test.use({ viewport: { width: 1440, height: 900 } })
 
-  test('shows three Project cards and loads the other three on "Show more"', async ({
+  test('shows three Project cards and loads three more on each "Show more"', async ({
     page,
   }) => {
     await page.goto('/pl')
     const section = projectsSection(page)
+    const showMore = section.getByRole('button', { name: 'Pokaż więcej' })
 
     await expect(section).toHaveAttribute('id', 'projects')
     await expect(cardTitles(page)).toHaveText([
       'EventTracker',
       'Solis — agent AI',
-      'Internacjonalizacja aplikacji',
+      'Automatyzacje AI w zespole',
     ])
 
-    await section.getByRole('button', { name: 'Pokaż więcej' }).click()
+    await showMore.click()
 
     await expect(cardTitles(page)).toHaveCount(6)
+    await expect(showMore).toBeFocused()
+
+    await showMore.click()
+
+    await expect(cardTitles(page)).toHaveCount(9)
+    await expect(showMore).toHaveCount(0)
     await expect(
-      section.getByRole('button', { name: 'Pokaż więcej' }),
-    ).toHaveCount(0)
-    await expect(
-      section.getByRole('link', { name: 'Raportowanie błędów' }),
+      section.getByRole('link', { name: 'Czat wsparcia AI' }),
     ).toBeFocused()
   })
 

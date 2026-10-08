@@ -20,7 +20,7 @@ test('a Project page renders its header block, Metrics and sections', async ({
   ).toBeVisible()
   await expect(
     main(page).getByRole('list', { name: 'Metryki' }).getByRole('listitem'),
-  ).toHaveText(['1,2 mln+sesji dziennie', '30 kBskryptu śledzącego'])
+  ).toHaveText(['1,2 mln+sesji dziennie', '< 25 kBskryptu śledzącego'])
 
   await expect(sectionHeadings(page)).toHaveText([
     '## Problem',
@@ -118,7 +118,7 @@ test('a Skill on the Project page opens the filtered Projects list', async ({
     .click()
 
   await expect(page).toHaveURL('/pl/projects?skill=Recharts')
-  await expect(page.getByText('1 z 6 projektów')).toBeVisible()
+  await expect(page.getByText('1 z 9 projektów')).toBeVisible()
 })
 
 test('links to the next Project and wraps from the last to the first', async ({
@@ -131,7 +131,7 @@ test('links to the next Project and wraps from the last to the first', async ({
 
   await expect(page).toHaveURL('/pl/projects/solis')
 
-  await page.goto('/pl/projects/automatyzacje-ai')
+  await page.goto('/pl/projects/mapy-klikniec-i-scrolla')
   await nav.getByRole('link', { name: /EventTracker/ }).click()
 
   await expect(page).toHaveURL('/pl/projects/eventtracker')

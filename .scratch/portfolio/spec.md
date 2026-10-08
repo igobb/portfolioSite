@@ -168,7 +168,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - `project_screenshots`: Project, storage path, alt text per Locale, sort order; the first Screenshot is the card cover.
 - `contact_messages`: name, email, message, Locale, hashed IP, created at.
 - Every required text field is NOT NULL in both Locales; optional lists default to empty. Row-level security allows anonymous reads of published Content only; `contact_messages` is written server-side only.
-- Seed data comes from the owner's `portfolio.txt` (6 Projects, edited into the template above) and the amended Skill list approved on the canvas (includes SWR, Recharts, i18next, Mastra, Vercel AI SDK, Sentry, Mixpanel, Lokalise, Jira; categories: Języki, Frontend, UI i stylowanie, Stan i dane, Backend i bazy, Testy, Narzędzia i wdrożenia, Monitoring i analityka, AI). English Content is written from the Polish before launch.
+- Seed data comes from the owner's `portfolio.txt` (6 Projects, edited into the template above) and the amended Skill list approved on the canvas (includes SWR, Recharts, i18next, Mastra, Vercel AI SDK, Sentry, Mixpanel, Lokalise, Jira; categories: Języki, Frontend, UI i stylowanie, Stan i dane, Backend i bazy danych, Testy, Narzędzia i wdrożenia, Monitoring i analityka, AI). English Content is written from the Polish before launch.
 - Approved slugs: `eventtracker`, `solis`, `i18n`, `raportowanie-bledow`, `analityka-mixpanel`, `automatyzacje-ai`.
 
 ### Home "Show more"

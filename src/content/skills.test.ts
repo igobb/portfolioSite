@@ -93,7 +93,7 @@ describe('getSkillCategories', () => {
         'Frontend',
         'UI i stylowanie',
         'Stan i dane',
-        'Backend i bazy',
+        'Backend i bazy danych',
         'Testy',
         'Narzędzia i wdrożenia',
         'Monitoring i analityka',
@@ -120,15 +120,19 @@ describe('getSkillCategories', () => {
         (category) => category.skills,
       )
 
-      expect(skills).toHaveLength(42)
+      expect(skills).toHaveLength(44)
       expect(
         skills.filter((skill) => skill.hasProjects).map((skill) => skill.name),
       ).toEqual([
         'TypeScript',
+        'JavaScript',
         'React',
         'i18next',
         'Recharts',
         'SWR',
+        'React Hook Form',
+        'Zod',
+        'Vitest',
         'GitHub',
         'GitHub Actions',
         'Vite',
@@ -136,10 +140,12 @@ describe('getSkillCategories', () => {
         'Lokalise',
         'Sentry',
         'Mixpanel',
+        'Claude Code',
         'Codex',
         'Mastra',
         'Vercel AI SDK',
         'n8n',
+        'MCP',
       ])
     })
   })

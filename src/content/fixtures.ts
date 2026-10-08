@@ -12,7 +12,7 @@ const skill_categories: ContentTables['skill_categories'] = [
   { id: 4, name_pl: 'Stan i dane', name_en: 'State and data', sort_order: 4 },
   {
     id: 5,
-    name_pl: 'Backend i bazy',
+    name_pl: 'Backend i bazy danych',
     name_en: 'Backend and databases',
     sort_order: 5,
   },
@@ -44,7 +44,7 @@ const SKILL_NAMES_BY_CATEGORY: Record<string, string[]> = {
     'Zod',
     'Axios',
   ],
-  'Backend i bazy': [
+  'Backend i bazy danych': [
     'Node.js',
     'Express',
     'REST API',
@@ -64,8 +64,8 @@ const SKILL_NAMES_BY_CATEGORY: Record<string, string[]> = {
     'Jira',
     'Lokalise',
   ],
-  'Monitoring i analityka': ['Sentry', 'Mixpanel'],
-  AI: ['Claude Code', 'Codex', 'Mastra', 'Vercel AI SDK', 'n8n'],
+  'Monitoring i analityka': ['Sentry', 'Mixpanel', 'Google Analytics'],
+  AI: ['Claude Code', 'Codex', 'Mastra', 'Vercel AI SDK', 'n8n', 'MCP'],
 }
 
 const skills: ContentTables['skills'] = Object.entries(SKILL_NAMES_BY_CATEGORY)
@@ -116,16 +116,16 @@ const projects: ContentTables['projects'] = [
       'An analytics tool built into Landingi. It collects events from published landing pages automatically and shows them in a dashboard, with no setup on the customer’s side.',
     metrics_pl: [
       { value: '1,2 mln+', label: 'sesji dziennie' },
-      { value: '30 kB', label: 'skryptu śledzącego' },
+      { value: '< 25 kB', label: 'skryptu śledzącego' },
     ],
     metrics_en: [
       { value: '1.2M+', label: 'sessions a day' },
-      { value: '30 kB', label: 'tracking script' },
+      { value: '< 25 kB', label: 'tracking script' },
     ],
     problem_pl:
-      'Klienci Landingi potrzebowali danych o zachowaniu użytkowników na swoich landing page’ach — bez konfigurowania narzędzi i wklejania kodu. Rozwiązaniem jest analityka wbudowana w platformę, która zbiera zdarzenia automatycznie na każdej opublikowanej stronie.',
+      'Klienci Landingi potrzebowali danych o tym, jak odwiedzający zachowują się na ich landing page’ach — żeby lepiej rozumieć swoich klientów i trafniej dobierać treści, a w efekcie zdobywać więcej leadów i więcej sprzedawać. I to bez konfigurowania narzędzi i wklejania kodu. Rozwiązaniem jest analityka wbudowana w platformę, która zbiera zdarzenia automatycznie na każdej opublikowanej stronie.',
     problem_en:
-      'Landingi customers needed data on how visitors behave on their landing pages, without configuring tools or pasting code. The answer is analytics built into the platform that collects events automatically on every published page.',
+      'Landingi customers needed data on how visitors behave on their landing pages, so they could understand their own customers better and choose content more accurately, which in turn means more leads and more sales. And they needed it without configuring tools or pasting code. The answer is analytics built into the platform that collects events automatically on every published page.',
     role_pl:
       'Architektura całości po stronie klienckiej oraz implementacja frontendu — dashboard analityczny i skrypt śledzący. Przepływ danych zaprojektowałem sam; poza moim zakresem było wyłącznie ich składowanie na backendzie.',
     role_en:
@@ -135,21 +135,21 @@ const projects: ContentTables['projects'] = [
     challenges_pl: [
       {
         title: 'Skrypt, który nie może kosztować klienta wyników',
-        body: 'Skrypt trafia na strony klientów, więc każdy kilobajt i każda milisekunda obciążają ich Core Web Vitals. Napisałem go w czystym TypeScripcie, z minimalnymi zależnościami i konfiguracją Vite nastawioną na rozmiar paczki — plik wynikowy waży 30 kB. Zdarzenia wysyła sendBeacon z throttlingiem po stronie klienta, żeby nie obciążać głównego wątku ani sieci użytkownika.',
+        body: 'Skrypt trafia na strony klientów, więc każdy kilobajt i każda milisekunda obciążają ich Core Web Vitals. Napisałem go w czystym TypeScripcie, z minimalnymi zależnościami i konfiguracją Vite nastawioną na rozmiar paczki — plik wynikowy waży poniżej 25 kB. Zdarzenia wysyła sendBeacon z throttlingiem po stronie klienta, żeby nie obciążać głównego wątku ani sieci użytkownika.',
       },
       {
         title: 'Dashboard przy dużym wolumenie zdarzeń',
-        body: 'Paginacja zamiast ładowania pełnych zbiorów, cache i deduplikacja zapytań w SWR oraz optimistic UI przy zmianach konfiguracji, żeby interfejs odpowiadał natychmiast. Agregację świadomie przeniosłem na backend — to decyzja podjęta przy projektowaniu przepływu danych, a nie obejście problemu w widoku.',
+        body: 'Paginacja zamiast ładowania pełnych zbiorów, cache i deduplikacja zapytań w SWR oraz optimistic UI przy zmianach konfiguracji, żeby interfejs odpowiadał natychmiast.',
       },
     ],
     challenges_en: [
       {
         title: 'A script that must not cost customers their scores',
-        body: 'The script runs on customers’ pages, so every kilobyte and millisecond weighs on their Core Web Vitals. I wrote it in plain TypeScript with minimal dependencies and a Vite config tuned for bundle size; the output weighs 30 kB. Events are sent with sendBeacon and throttled on the client so they don’t load the main thread or the visitor’s network.',
+        body: 'The script runs on customers’ pages, so every kilobyte and millisecond weighs on their Core Web Vitals. I wrote it in plain TypeScript with minimal dependencies and a Vite config tuned for bundle size; the output weighs under 25 kB. Events are sent with sendBeacon and throttled on the client so they don’t load the main thread or the visitor’s network.',
       },
       {
         title: 'A dashboard for a high volume of events',
-        body: 'Pagination instead of loading full data sets, request caching and deduplication with SWR, and optimistic UI for configuration changes so the interface responds instantly. I deliberately moved aggregation to the backend: a decision made while designing the data flow, not a workaround in the view.',
+        body: 'Pagination instead of loading full data sets, request caching and deduplication with SWR, and optimistic UI for configuration changes so the interface responds instantly.',
       },
     ],
     outcomes_pl: [
@@ -213,9 +213,9 @@ const projects: ContentTables['projects'] = [
     context_pl: 'Landingi',
     context_en: 'Landingi',
     summary_pl:
-      'Agent AI, który zamienia dane o landing page’ach w konkretne rekomendacje. Odpowiedzi streamowane do interfejsu na żywo.',
+      'Agent AI, który na podstawie danych z EventTrackera sam cyklicznie podsuwa rekomendacje. W czacie odpowiada na pytania o dane i na żywo wskazuje zmiany podnoszące konwersję.',
     summary_en:
-      'An AI agent that turns landing page data into concrete recommendations, with answers streamed live to the interface.',
+      'An AI agent that regularly makes recommendations on its own from EventTracker data. In a chat it answers questions about the data and suggests changes that raise conversion, streamed live.',
     metrics_pl: [{ value: 'Kilkuset', label: 'aktywnych klientów' }],
     metrics_en: [{ value: 'Hundreds of', label: 'active customers' }],
     ...NO_PAGE_SECTIONS,
@@ -223,7 +223,7 @@ const projects: ContentTables['projects'] = [
   {
     id: 3,
     slug: 'i18n',
-    sort_order: 3,
+    sort_order: 4,
     published: true,
     title_pl: 'Internacjonalizacja aplikacji',
     title_en: 'App internationalisation',
@@ -246,7 +246,7 @@ const projects: ContentTables['projects'] = [
   {
     id: 4,
     slug: 'raportowanie-bledow',
-    sort_order: 4,
+    sort_order: 5,
     published: true,
     title_pl: 'Raportowanie błędów',
     title_en: 'Error reporting',
@@ -263,16 +263,16 @@ const projects: ContentTables['projects'] = [
   {
     id: 5,
     slug: 'analityka-mixpanel',
-    sort_order: 5,
+    sort_order: 6,
     published: true,
     title_pl: 'Standard analityki w Mixpanel',
     title_en: 'Mixpanel analytics standard',
     context_pl: 'Landingi',
     context_en: 'Landingi',
     summary_pl:
-      'Tracking plan i jedna warstwa wysyłki zdarzeń. Dane porównywalne w całej aplikacji, PM-owie pracują na nich samodzielnie.',
+      'Z chaosu w nazwach zdarzeń do jednego standardu: tracking plan, wspólna funkcja wysyłki i uporządkowane dane, na których product managerowie pracują samodzielnie.',
     summary_en:
-      'A tracking plan and a single event layer. Data is comparable across the app and PMs work with it on their own.',
+      'From inconsistent event names to one standard: a tracking plan, a shared sending function and cleaned-up data that product managers work with on their own.',
     metrics_pl: [],
     metrics_en: [],
     ...NO_PAGE_SECTIONS,
@@ -280,16 +280,67 @@ const projects: ContentTables['projects'] = [
   {
     id: 6,
     slug: 'automatyzacje-ai',
-    sort_order: 6,
+    sort_order: 3,
     published: true,
     title_pl: 'Automatyzacje AI w zespole',
     title_en: 'AI automation for the team',
     context_pl: 'Landingi',
     context_en: 'Landingi',
     summary_pl:
-      'Skille AI dla zespołu: taski w Jirze, drafty PR-ów, wsparcie code review i ustrukturyzowane planowanie funkcjonalności.',
+      'Skille AI dla zespołu: taski w Jirze tworzone z dokumentacji biznesowej, drafty PR-ów, wsparcie code review i ustrukturyzowane planowanie funkcjonalności.',
     summary_en:
-      'AI skills for the team: Jira tasks, PR drafts, code review support and structured feature planning.',
+      'AI skills for the team: Jira tasks created from business documentation, PR drafts, code review support and structured feature planning.',
+    metrics_pl: [],
+    metrics_en: [],
+    ...NO_PAGE_SECTIONS,
+  },
+  {
+    id: 7,
+    slug: 'czat-wsparcia-ai',
+    sort_order: 7,
+    published: true,
+    title_pl: 'Czat wsparcia AI',
+    title_en: 'AI support chat',
+    context_pl: 'Landingi',
+    context_en: 'Landingi',
+    summary_pl:
+      'Czat AI wbudowany we wszystkie aplikacje Landingi. Odpowiada na powtarzalne pytania na podstawie bazy wiedzy, a trudniejsze rozmowy przekazuje do człowieka.',
+    summary_en:
+      'An AI chat built into every Landingi app. It answers repetitive questions from the knowledge base and hands harder conversations over to a person.',
+    metrics_pl: [{ value: '24/7', label: 'wsparcia klientów' }],
+    metrics_en: [{ value: '24/7', label: 'customer support' }],
+    ...NO_PAGE_SECTIONS,
+  },
+  {
+    id: 8,
+    slug: 'rejestracja-i-logowanie',
+    sort_order: 8,
+    published: true,
+    title_pl: 'Rejestracja i logowanie',
+    title_en: 'Registration and sign-in',
+    context_pl: 'Landingi',
+    context_en: 'Landingi',
+    summary_pl:
+      'Ujednolicone wejście do platformy: rejestracja, logowanie, weryfikacja e-maila, odzyskiwanie hasła i 2FA w jednym spójnym przepływie zamiast kilku rozproszonych wariantów.',
+    summary_en:
+      'A unified way into the platform: registration, sign-in, email verification, password recovery and 2FA in one consistent flow instead of several scattered variants.',
+    metrics_pl: [],
+    metrics_en: [],
+    ...NO_PAGE_SECTIONS,
+  },
+  {
+    id: 9,
+    slug: 'mapy-klikniec-i-scrolla',
+    sort_order: 9,
+    published: true,
+    title_pl: 'Mapy kliknięć i scrolla',
+    title_en: 'Event and scroll maps',
+    context_pl: 'Landingi',
+    context_en: 'Landingi',
+    summary_pl:
+      'Heatmapy kliknięć i mapy scrolla nałożone na opublikowany landing page, zbudowane na danych z EventTrackera. Klient widzi, gdzie użytkownicy klikają i jak daleko przewijają stronę.',
+    summary_en:
+      'Click heatmaps and scroll maps laid over a published landing page, built on EventTracker data. Customers see where visitors click and how far they scroll.',
     metrics_pl: [],
     metrics_en: [],
     ...NO_PAGE_SECTIONS,
@@ -309,7 +360,17 @@ const SKILL_NAMES_BY_PROJECT: Record<string, string[]> = {
   i18n: ['React', 'i18next', 'Lokalise', 'GitHub Actions'],
   'raportowanie-bledow': ['Sentry', 'React', 'TypeScript'],
   'analityka-mixpanel': ['Mixpanel', 'React', 'TypeScript'],
-  'automatyzacje-ai': ['Codex', 'GitHub', 'Jira'],
+  'automatyzacje-ai': ['Codex', 'Claude Code', 'MCP', 'GitHub', 'Jira'],
+  'czat-wsparcia-ai': ['React', 'TypeScript', 'JavaScript', 'n8n'],
+  'rejestracja-i-logowanie': [
+    'React',
+    'TypeScript',
+    'SWR',
+    'React Hook Form',
+    'Zod',
+    'Vitest',
+  ],
+  'mapy-klikniec-i-scrolla': ['React', 'TypeScript', 'SWR'],
 }
 
 function idOf<Row extends { id: number }>(
