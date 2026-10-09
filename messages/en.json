@@ -17,7 +17,8 @@
     "menu": "Menu"
   },
   "Footer": {
-    "source": "Source code of this site on GitHub"
+    "source": "Source code of this site on GitHub",
+    "agentsHint": "For AI agents: the whole portfolio in one text file →"
   },
   "Logo": {
     "label": "tgolab logo"
