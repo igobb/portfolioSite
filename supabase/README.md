@@ -20,10 +20,10 @@ One-time setup of the free Supabase project that holds the Content. The schema a
 5. **Create the database webhook:** Database → Webhooks → Create a new hook
    - Tables: `skill_categories`, `skills`, `projects`, `project_skills`, `project_screenshots`
    - Events: Insert, Update, Delete
-   - Type: HTTP Request, method `POST`, URL `https://<deployment>/api/revalidate`
+   - Type: HTTP Request, method `POST`, URL `https://<production domain>/api/revalidate` — the stable production domain (now `portfolio-site-omega-teal-69.vercel.app`, after launch `portfolio.tgolab.dev`), never a branch alias (`…-git-<branch>-…`) or a single deployment URL: those keep pointing at an old build, so production would never refresh
    - HTTP header: `Authorization: Bearer <REVALIDATE_SECRET>`
    - If the deployment is behind Vercel Deployment Protection (previews are by default), also add `x-vercel-protection-bypass: <secret>` from Vercel → Settings → Deployment Protection → Protection Bypass for Automation.
 
-6. **Check it:** edit a Project title in the Table Editor and reload its page on the deployment; the new title appears within seconds.
+6. **Check it:** edit a Project title in the Table Editor and reload its page on production; the new title appears within seconds. Each webhook call is logged in `net._http_response` (`status_code` 200, `{"revalidated":true}`).
 
 Screenshots: upload images to the `screenshots` bucket and add a `project_screenshots` row whose `storage_path` is the file's path inside the bucket.
