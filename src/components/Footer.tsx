@@ -12,6 +12,13 @@ export function Footer() {
           © {new Date().getFullYear()} {OWNER_NAME} · {SITE_DOMAIN}
         </p>
 
+        <p className="opacity-80">
+          {t('agentsHint')}{' '}
+          <a href="/llms.txt" className="underline underline-offset-2">
+            llms.txt
+          </a>
+        </p>
+
         <a href={SOURCE_REPOSITORY_URL} className="self-start xl:self-auto">
           {t('source')} <span aria-hidden>↗</span>
         </a>
