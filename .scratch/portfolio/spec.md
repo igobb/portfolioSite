@@ -113,7 +113,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 62. ~~As an AI agent, I want structured data describing the owner (Person) and the Projects, so that I can extract facts reliably.~~ Dropped in ticket 12: agents read the server-rendered pages and `llms.txt` directly.
 63. As an AI agent, I want an `llms.txt` with a concise summary and links to every Project in both Locales, so that I can find everything quickly.
 64. As a search engine, I want `hreflang` alternates, a sitemap and robots rules, so that both Locales are indexed correctly.
-65. As a recruiter pasting a link into LinkedIn or Slack, I want a generated Open Graph preview (home and per Project, showing Metrics), so that the link looks credible before it's clicked.
+65. As a recruiter pasting a link into LinkedIn or Slack, I want a generated Open Graph preview (one universal card for every page), so that the link looks credible before it's clicked.
 
 ### Owner — editing Content
 
@@ -192,7 +192,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 ### Machine readability
 - All Content server-rendered; no JSON-LD (dropped in ticket 12).
 - `llms.txt` generated from the content module: who the owner is, Skills by category, and every Project with a one-line summary and URLs in both Locales.
-- `sitemap.xml` with `hreflang` alternates, a minimal `robots.txt` pointing at the sitemap, per-page metadata; generated Open Graph images for home and each Project (last, non-blocking).
+- `sitemap.xml` with `hreflang` alternates, a minimal `robots.txt` pointing at the sitemap, per-page metadata; one generated Open Graph image shared by every page (last, non-blocking).
 
 ### Operations
 - Vercel Cron calls a keep-alive endpoint daily that runs a trivial query against Supabase.
