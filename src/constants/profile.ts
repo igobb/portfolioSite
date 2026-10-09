@@ -5,6 +5,8 @@ export const OWNER_EMAIL = 't.golab06@gmail.com'
 export const GITHUB_URL = 'https://github.com/igobb'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/igobb/'
 
+export const ROLE_LINE = 'Fullstack & Frontend Developer'
+
 export const ROLES: Record<Locale, string[]> = {
   pl: ['Fullstack Developer', 'Frontend Developer', 'Pasjonat AI'],
   en: ['Fullstack Developer', 'Frontend Developer', 'AI Enthusiast'],

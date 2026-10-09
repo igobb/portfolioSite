@@ -1,12 +1,13 @@
-# 14 — Open Graph images
+# 14 — Open Graph image
 
-**What to build:** A link to the portfolio or to a Project pasted into LinkedIn, Slack or Messenger shows a generated preview card in the Terminal style — home: name, Roles and logo; Project: title, context and Metrics — created automatically for every new Project.
+**What to build:** A link to any page of the portfolio pasted into LinkedIn, Slack or Messenger shows the same generated preview card in the Terminal style: name, a short role line, logo and domain.
 
 **Blocked by:** 07 — Project page and 404; 12 — Machine readability
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Generated Open Graph images for the home page and each Project page in both Locales, using the design tokens and IBM Plex Mono
-- [ ] Referenced from page metadata (Open Graph and Twitter card)
-- [ ] Images regenerate when Content changes (follow the same revalidation)
-- [ ] Playwright or Vitest: the image routes respond with an image for home and a fixture Project
+**Scope reduced (owner's call):** one universal image for every page and Locale instead of per-Project cards with Metrics, so nothing depends on Content and nothing needs regenerating.
+
+- [x] One generated Open Graph image shared by every page in both Locales, using the design tokens and the default font
+- [x] Referenced from page metadata (Open Graph and Twitter card)
+- [x] Playwright: home, the projects list and a fixture Project link the image, and the image route responds with a PNG

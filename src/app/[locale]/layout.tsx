@@ -28,6 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(SITE_URL),
     title: { template: `%s – ${OWNER_NAME}`, default: t('homeTitle') },
     description: t('homeDescription'),
+    openGraph: { type: 'website', siteName: OWNER_NAME },
+    twitter: { card: 'summary_large_image' },
   }
 }
 
