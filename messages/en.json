@@ -1,6 +1,10 @@
 {
   "Metadata": {
-    "description": "Tomasz Gołąb's portfolio: skills and projects."
+    "homeTitle": "Tomasz Gołąb – Fullstack & Frontend Developer",
+    "homeDescription": "Fullstack and Frontend Developer. React, Next.js and TypeScript every day, plus AI automation. See my skills, projects and how to get in touch.",
+    "projectsDescription": "Commercial and personal projects: analytics, AI agents, i18n, error monitoring. Each with the problem and the outcomes.",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "This page isn’t here."
   },
   "Header": {
     "homeLink": "tgolab – home",

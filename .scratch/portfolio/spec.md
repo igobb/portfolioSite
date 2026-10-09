@@ -15,7 +15,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - The home page shows the hero (name, typewriter cycling the Roles, social links, logo), all Skills grouped into Skill categories, the first three Projects with "Show more", and a Contact section with a copyable email, CV, LinkedIn, GitHub and a contact form.
 - `/projects` lists every Project as a Project card with a Skill filter; each Project has its own Project page with Metrics, a Screenshot carousel and a fixed structure (problem, role, what was built, challenges, outcomes, stack, links).
 - Content lives in Supabase with both Locales per field and is edited in the Supabase dashboard; the site revalidates automatically. UI copy lives in the repo.
-- Pages are server-rendered, carry structured data and an `llms.txt`, so machines read the same facts people do.
+- Pages are server-rendered, carry complete metadata and an `llms.txt`, so machines read the same facts people do.
 - The repository itself demonstrates production practice: small PRs with Conventional Commit titles, CI running lint, typecheck, unit tests, build and E2E on every PR, preview deploys and a README explaining the workflow.
 
 ## User Stories
@@ -110,7 +110,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 ### Machines — search engines and AI agents
 
 61. As an AI agent summarising a candidate, I want all Content rendered in the server HTML, so that I can read it without running JavaScript.
-62. As an AI agent, I want structured data describing the owner (Person) and the Projects, so that I can extract facts reliably.
+62. ~~As an AI agent, I want structured data describing the owner (Person) and the Projects, so that I can extract facts reliably.~~ Dropped in ticket 12: agents read the server-rendered pages and `llms.txt` directly.
 63. As an AI agent, I want an `llms.txt` with a concise summary and links to every Project in both Locales, so that I can find everything quickly.
 64. As a search engine, I want `hreflang` alternates, a sitemap and robots rules, so that both Locales are indexed correctly.
 65. As a recruiter pasting a link into LinkedIn or Slack, I want a generated Open Graph preview (home and per Project, showing Metrics), so that the link looks credible before it's clicked.
@@ -190,9 +190,9 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 - Accessibility: real buttons and links, `aria-pressed` on filter chips, `aria-label` on icon buttons, visible focus, text contrast ≥ 4.5:1 in both themes, reduced motion disables the typewriter animation and cursor blink.
 
 ### Machine readability
-- All Content server-rendered. JSON-LD: `Person` on the home page (name, Roles, links), `CreativeWork` per Project page, `ItemList` on `/projects`.
+- All Content server-rendered; no JSON-LD (dropped in ticket 12).
 - `llms.txt` generated from the content module: who the owner is, Skills by category, and every Project with a one-line summary and URLs in both Locales.
-- `sitemap.xml` with `hreflang` alternates, `robots.txt`, per-page metadata; generated Open Graph images for home and each Project (last, non-blocking).
+- `sitemap.xml` with `hreflang` alternates, a minimal `robots.txt` pointing at the sitemap, per-page metadata; generated Open Graph images for home and each Project (last, non-blocking).
 
 ### Operations
 - Vercel Cron calls a keep-alive endpoint daily that runs a trivial query against Supabase.
@@ -207,7 +207,7 @@ A bilingual (PL/EN) portfolio at `portfolio.tgolab.dev` in a light-retro "Termin
 ## Testing Decisions
 
 - Good tests assert externally visible behaviour through the public interface of a seam — what a user sees or what a module returns — never internal state, component structure or which function called which. Tests use domain vocabulary from `CONTEXT.md`.
-- **Seam 1 — the whole app (Playwright, primary).** Runs the production build with the fixture content source. Covers: Locale switch preserves the page and changes URL and copy; `/` redirect; theme toggle persists and follows the system by default; typewriter shows a Role; "Show more" appends three Project cards and disappears at the end; Skill link on home opens the filtered list; Skill filter AND semantics, URL state, count and no-results reset; Project page sections, omitted empty sections, carousel navigation, next-Project link; copy-email feedback; contact form validation and success state (submission dependencies faked); 404; presence of JSON-LD and `llms.txt`.
+- **Seam 1 — the whole app (Playwright, primary).** Runs the production build with the fixture content source. Covers: Locale switch preserves the page and changes URL and copy; `/` redirect; theme toggle persists and follows the system by default; typewriter shows a Role; "Show more" appends three Project cards and disappears at the end; Skill link on home opens the filtered list; Skill filter AND semantics, URL state, count and no-results reset; Project page sections, omitted empty sections, carousel navigation, next-Project link; copy-email feedback; contact form validation and success state (submission dependencies faked); 404; canonical and `hreflang` in page metadata, `sitemap.xml` and `llms.txt`.
 - **Seam 2 — the content module (Vitest).** Against the fixture source: Locale resolution of every field, ordering by sort order, published-only filtering, pagination with "has more", Skill "has Projects" flag, next-Project resolution, not-found for unknown or unpublished slugs; plus the pure Skill filter function.
 - **Seam 3 — Contact message submission (Vitest).** With fake store, notifier, clock and rate limiter: valid message is stored and notified; invalid input returns field errors; honeypot and too-fast submissions are dropped without notification; exceeding the per-IP limit is rejected; notifier failure still keeps the stored message and reports an error.
 - The Supabase source and Resend are not exercised in CI; they are verified manually on the Vercel preview of the PR that introduces them.

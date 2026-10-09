@@ -1,6 +1,10 @@
 {
   "Metadata": {
-    "description": "Portfolio Tomasza Gołąba: umiejętności i projekty."
+    "homeTitle": "Tomasz Gołąb – Fullstack i Frontend Developer",
+    "homeDescription": "Fullstack i Frontend Developer. Na co dzień React, Next.js i TypeScript, do tego automatyzacje AI. Zobacz umiejętności, projekty i kontakt.",
+    "projectsDescription": "Projekty komercyjne i własne: analityka, agenci AI, i18n, monitoring błędów. Każdy z opisem problemu i efektów.",
+    "notFoundTitle": "Nie znaleziono strony",
+    "notFoundDescription": "Tej strony tu nie ma."
   },
   "Header": {
     "homeLink": "tgolab – strona główna",

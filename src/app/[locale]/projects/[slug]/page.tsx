@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { hasLocale } from 'next-intl'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { Header } from '@/components/Header/Header'
-import { OWNER_NAME } from '@/constants/profile'
 import { getProjectList, getProjectPage } from '@/content'
+import { localeAlternates } from '@/i18n/locale-alternates'
 import { routing } from '@/i18n/routing'
 import { NextProjectNav } from './_components/NextProjectNav'
 import { ProjectDetails } from './_components/ProjectDetails/ProjectDetails'
@@ -29,13 +29,21 @@ export async function generateMetadata({
   params,
 }: PageProps<'/[locale]/projects/[slug]'>): Promise<Metadata> {
   const { slug } = await params
-  const project = await getProjectPage(await getLocale(), slug)
+  const locale = await getLocale()
+  const project = await getProjectPage(locale, slug)
 
-  if (!project) return {}
+  if (!project) {
+    const t = await getTranslations('Metadata')
+    return {
+      title: t('notFoundTitle'),
+      description: t('notFoundDescription'),
+    }
+  }
 
   return {
-    title: `${project.title} – ${OWNER_NAME}`,
+    title: project.title,
     description: project.summary,
+    alternates: localeAlternates(locale, `/projects/${slug}`),
   }
 }
 

@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { Footer } from '@/components/Footer'
 import { routing } from '@/i18n/routing'
 import { OWNER_NAME } from '@/constants/profile'
+import { SITE_URL } from '@/constants/site'
 import '../globals.css'
 
 const plexMono = IBM_Plex_Mono({
@@ -21,7 +22,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('Metadata')
-  return { title: OWNER_NAME, description: t('description') }
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { template: `%s – ${OWNER_NAME}`, default: t('homeTitle') },
+    description: t('homeDescription'),
+  }
 }
 
 export default async function LocaleLayout({
