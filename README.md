@@ -2,7 +2,7 @@
 
 Personal portfolio of **Tomasz Gołąb**, Fullstack / Frontend Developer. It tells a recruiter — or an AI agent reading on their behalf — who I am, what I work with and what I have built, in under a minute.
 
-> **Status:** in development. The plan, decisions and every ticket are in this repository (see [How this project is planned](#how-this-project-is-planned)). Target URL: `https://portfolio.tgolab.dev`.
+> **Live:** [portfolio.tgolab.dev](https://portfolio.tgolab.dev). The plan, decisions and every ticket are in this repository (see [How this project is planned](#how-this-project-is-planned)).
 
 ## What it does
 
@@ -111,7 +111,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | 10  | Contact on production: Supabase and Resend  | ✅     |
 | 11  | English version                             | ✅     |
 | 12  | Machine readability                         | ✅     |
-| 13  | Production launch                           | ⏳     |
+| 13  | Production launch                           | ✅     |
 | 14  | Open Graph images                           | ⏳     |
 | 15  | Sticky header                               | ⏳     |
 | 16  | CV content consistency                      | ⏳     |
