@@ -117,9 +117,17 @@ for (const locale of ['pl', 'en']) {
 
     await expect(footer).toContainText('© ')
     await expect(footer).toContainText('Tomasz Gołąb')
-    await expect(footer.getByRole('link')).toHaveAttribute(
+    await expect(footer.getByRole('link', { name: /GitHub/ })).toHaveAttribute(
       'href',
       'https://github.com/igobb/portfolioSite',
     )
+  })
+
+  test(`footer points AI agents at llms.txt (${locale})`, async ({ page }) => {
+    await page.goto(`/${locale}`)
+
+    await expect(
+      page.getByRole('contentinfo').getByRole('link', { name: 'llms.txt' }),
+    ).toHaveAttribute('href', '/llms.txt')
   })
 }
