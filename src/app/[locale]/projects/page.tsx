@@ -1,13 +1,19 @@
 import type { Metadata } from 'next'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { Header } from '@/components/Header/Header'
-import { OWNER_NAME } from '@/constants/profile'
 import { getProjectList } from '@/content'
+import { localeAlternates } from '@/i18n/locale-alternates'
 import { ProjectsBrowser } from './_filter/ProjectsBrowser/ProjectsBrowser'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('ProjectsPage')
-  return { title: `${t('title')} – ${OWNER_NAME}` }
+  const tMetadata = await getTranslations('Metadata')
+
+  return {
+    title: t('title'),
+    description: tMetadata('projectsDescription'),
+    alternates: localeAlternates(await getLocale(), '/projects'),
+  }
 }
 
 export default async function ProjectsPage() {

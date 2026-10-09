@@ -12,7 +12,7 @@ Personal portfolio of **Tomasz Gołąb**, Fullstack / Frontend Developer. It tel
 - **Contact** — copyable email, CV, LinkedIn, GitHub and a spam-protected contact form.
 - **Polish and English** — every page under `/pl/…` and `/en/…`.
 - **Light and dark mode** — follows the system, remembers the choice, no flash on load.
-- **Readable by machines** — server-rendered HTML, JSON-LD, `llms.txt`, sitemap with language alternates.
+- **Readable by machines** — server-rendered HTML, per-page metadata with canonical and `hreflang`, `llms.txt`, sitemap with language alternates.
 
 Content (Skills, Projects) lives in a database and is edited without touching code or deploying.
 
@@ -53,6 +53,7 @@ flowchart LR
 
 - **Schema and seed live in the repo:** [`supabase/migrations/`](supabase/migrations/) creates the Content tables, row-level security (anonymous reads of published Content only; Contact messages server-side only) and the `screenshots` Storage bucket; [`supabase/seed.sql`](supabase/seed.sql) loads the initial Skills and Projects.
 - **Reads are cached and tagged.** The Supabase source fetches the Content tables through `fetch` cached under one `content` tag, validates the rows with Zod and resolves them through the same code as the fixtures.
+- **Machine-readable files follow the same cache.** `sitemap.xml` and `llms.txt` are static routes built from the content module, so the same tag refreshes them; absolute URLs, canonicals and `hreflang` always point at `https://portfolio.tgolab.dev`; a minimal `robots.txt` points crawlers at the sitemap.
 - **Edits reach the site without a deploy.** A Supabase database webhook on every Content table calls `POST /api/revalidate` with a shared secret; the endpoint invalidates the `content` tag and the next visit renders fresh pages.
 - **Setup** of the Supabase project, Vercel variables and the webhook: [`supabase/README.md`](supabase/README.md).
 - **The free project stays awake.** A daily Vercel Cron (`vercel.json`) calls `GET /api/keep-alive`, which runs a trivial query.
@@ -74,11 +75,11 @@ This repository is run the way I work on production teams:
 
 Tests assert behaviour through public interfaces, never implementation details.
 
-| Seam               | Tool       | What it covers                                                                                                                                 |
-| ------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| The whole app      | Playwright | Real production build with fixture Content: Locale switch, theme, "show more", Skill filter, Project pages, contact form, 404, structured data |
-| Content module     | Vitest     | Locale resolution, ordering, published-only, pagination, Skill filter (AND), next-Project lookup                                               |
-| Contact submission | Vitest     | Validation, honeypot and timing checks, rate limit, storing and notifying (with fakes)                                                         |
+| Seam               | Tool       | What it covers                                                                                                                                                  |
+| ------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The whole app      | Playwright | Real production build with fixture Content: Locale switch, theme, "show more", Skill filter, Project pages, contact form, 404, metadata, sitemap and `llms.txt` |
+| Content module     | Vitest     | Locale resolution, ordering, published-only, pagination, Skill filter (AND), next-Project lookup                                                                |
+| Contact submission | Vitest     | Validation, honeypot and timing checks, rate limit, storing and notifying (with fakes)                                                                          |
 
 Supabase and Resend integrations are verified manually on each PR's preview deployment.
 
@@ -109,10 +110,11 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | 09  | Supabase Content, seed and revalidation     | ✅     |
 | 10  | Contact on production: Supabase and Resend  | ✅     |
 | 11  | English version                             | ✅     |
-| 12  | Machine readability                         | ⏳     |
+| 12  | Machine readability                         | ✅     |
 | 13  | Production launch                           | ⏳     |
 | 14  | Open Graph images                           | ⏳     |
 | 15  | Sticky header                               | ⏳     |
+| 16  | CV content consistency                      | ⏳     |
 
 ## Running locally
 
