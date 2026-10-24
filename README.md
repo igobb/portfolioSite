@@ -114,7 +114,7 @@ Planning follows an agent-friendly flow ([Matt Pocock's skills](https://www.aihe
 | 13  | Production launch                           | ✅     |
 | 14  | Open Graph image                            | ✅     |
 | 15  | Sticky header                               | ⏳     |
-| 16  | CV content consistency                      | ⏳     |
+| 16  | CV content consistency                      | ✅     |
 
 ## Running locally
 

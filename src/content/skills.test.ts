@@ -120,15 +120,16 @@ describe('getSkillCategories', () => {
         (category) => category.skills,
       )
 
-      expect(skills).toHaveLength(44)
+      expect(skills).toHaveLength(45)
       expect(
         skills.filter((skill) => skill.hasProjects).map((skill) => skill.name),
       ).toEqual([
         'TypeScript',
         'JavaScript',
         'React',
-        'i18next',
+        'Storybook',
         'Recharts',
+        'i18next',
         'SWR',
         'React Hook Form',
         'Zod',
