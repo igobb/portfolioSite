@@ -33,9 +33,17 @@ const skill_categories: ContentTables['skill_categories'] = [
 ]
 
 const SKILL_NAMES_BY_CATEGORY: Record<string, string[]> = {
-  Języki: ['TypeScript', 'JavaScript', 'HTML', 'CSS'],
-  Frontend: ['React', 'Next.js', 'i18next'],
-  'UI i stylowanie': ['Tailwind CSS', 'shadcn/ui', 'CSS Modules', 'Recharts'],
+  Języki: ['TypeScript', 'JavaScript', 'HTML'],
+  Frontend: ['React', 'Next.js'],
+  'UI i stylowanie': [
+    'CSS',
+    'Tailwind CSS',
+    'shadcn/ui',
+    'CSS Modules',
+    'Storybook',
+    'Recharts',
+    'i18next',
+  ],
   'Stan i dane': [
     'Redux Toolkit',
     'TanStack Query',
@@ -355,13 +363,14 @@ const SKILL_NAMES_BY_PROJECT: Record<string, string[]> = {
     'Recharts',
     'Vite',
     'GitHub Actions',
+    'Storybook',
   ],
-  solis: ['React', 'TypeScript', 'Mastra', 'Vercel AI SDK', 'n8n'],
+  solis: ['React', 'TypeScript', 'Mastra', 'Vercel AI SDK', 'n8n', 'Storybook'],
   i18n: ['React', 'i18next', 'Lokalise', 'GitHub Actions'],
   'raportowanie-bledow': ['Sentry', 'React', 'TypeScript'],
   'analityka-mixpanel': ['Mixpanel', 'React', 'TypeScript'],
   'automatyzacje-ai': ['Codex', 'Claude Code', 'MCP', 'GitHub', 'Jira'],
-  'czat-wsparcia-ai': ['React', 'TypeScript', 'JavaScript', 'n8n'],
+  'czat-wsparcia-ai': ['React', 'TypeScript', 'JavaScript', 'n8n', 'Storybook'],
   'rejestracja-i-logowanie': [
     'React',
     'TypeScript',
@@ -369,8 +378,9 @@ const SKILL_NAMES_BY_PROJECT: Record<string, string[]> = {
     'React Hook Form',
     'Zod',
     'Vitest',
+    'Storybook',
   ],
-  'mapy-klikniec-i-scrolla': ['React', 'TypeScript', 'SWR'],
+  'mapy-klikniec-i-scrolla': ['React', 'TypeScript', 'SWR', 'Storybook'],
 }
 
 function idOf<Row extends { id: number }>(

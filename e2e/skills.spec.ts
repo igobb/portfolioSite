@@ -30,8 +30,8 @@ test.describe('desktop Skills section', () => {
           new RegExp(`^${String(index + 1).padStart(2, '0')}\\s*${name}$`),
       ),
     )
-    await expect(section.getByRole('link')).toHaveCount(22)
-    await expect(section.getByRole('listitem')).toHaveCount(44)
+    await expect(section.getByRole('link')).toHaveCount(23)
+    await expect(section.getByRole('listitem')).toHaveCount(45)
     await expect(section.getByRole('link', { name: 'Next.js' })).toHaveCount(0)
     await expect(section.getByText('Next.js', { exact: true })).toBeVisible()
     await expect(
